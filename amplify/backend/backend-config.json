@@ -1,0 +1,14 @@
+{
+	"auth": {
+		"cognito8bf7770d": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation"
+		}
+	},
+	"analytics": {
+		"flutterauth2": {
+			"service": "Pinpoint",
+			"providerPlugin": "awscloudformation"
+		}
+	}
+}

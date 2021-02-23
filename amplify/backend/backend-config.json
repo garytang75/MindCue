@@ -1,8 +1,10 @@
 {
 	"auth": {
-		"cognito8bf7770d": {
+		"flutterauth2b56ab0cc": {
 			"service": "Cognito",
-			"providerPlugin": "awscloudformation"
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
 		}
 	},
 	"analytics": {

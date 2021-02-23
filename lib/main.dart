@@ -29,6 +29,7 @@ class _MyAppState extends State<MyApp> {
     Amplify.addPlugin(AmplifyAnalyticsPinpoint());
     Amplify.addPlugin(AmplifyAuthCognito());
 
+
     // Once Plugins are added, configure Amplify
     // Note: Amplify can only be configured once.
     try {

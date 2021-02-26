@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import './auth_credentials.dart';
 
-
 class LoginPage extends StatefulWidget {
   final VoidCallback shouldShowSignUp;
   final ValueChanged<LoginCredentials> didProvideCredentials;
@@ -69,7 +68,6 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  // 7
   void _login() {
     final username = _usernameController.text.trim();
     final password = _passwordController.text.trim();

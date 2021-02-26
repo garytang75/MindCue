@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './auth_credentials.dart';
+import './auth_service.dart';
 
 class SignUpPage extends StatefulWidget {
   final ValueChanged<SignUpCredentials> didProvideCredentials;
@@ -15,7 +16,8 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final _usernameController = TextEditingController();
-  final _emailController = TextEditingController();
+  //currently username = email address
+  //final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
   @override
@@ -46,15 +48,15 @@ class _SignUpPageState extends State<SignUpPage> {
         TextField(
           controller: _usernameController,
           decoration:
-          InputDecoration(icon: Icon(Icons.person), labelText: 'Username'),
+          InputDecoration(icon: Icon(Icons.person), labelText: 'Email'),
         ),
 
-        // Email TextField
-        TextField(
-          controller: _emailController,
-          decoration:
-          InputDecoration(icon: Icon(Icons.mail), labelText: 'Email'),
-        ),
+        // // Email TextField
+        // TextField(
+        //   controller: _emailController,
+        //   decoration:
+        //   InputDecoration(icon: Icon(Icons.mail), labelText: 'Email'),
+        // ),
 
         // Password TextField
         TextField(
@@ -69,14 +71,22 @@ class _SignUpPageState extends State<SignUpPage> {
         FlatButton(
             onPressed: _signUp,
             child: Text('Sign Up'),
+            color: Theme.of(context).accentColor),
+        ///////////////////////////////
+        ///this button here just for testing
+        /// delete in actual app
+        FlatButton(
+            child: Text('Logout'),
+            onPressed: AuthService().logOut,
             color: Theme.of(context).accentColor)
+        ///////////////////////////////
       ],
     );
   }
 
   void _signUp() {
     final username = _usernameController.text.trim();
-    final email = _emailController.text.trim();
+    final email = _usernameController.text.trim();
     final password = _passwordController.text.trim();
 
     print('username: $username');

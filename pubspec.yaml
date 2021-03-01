@@ -25,7 +25,6 @@ dependencies:
     sdk: flutter
   amplify_flutter: '<1.0.0'
   amplify_auth_cognito: '<1.0.0'
-  amplify_analytics_pinpoint: '<1.0.0'
 
   flutter_login: '<1.0.0'
   rflutter_alert: '<1.0.3'
@@ -52,6 +51,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
 
   assets:
+    - .env
     - assets/logo.png
 
 

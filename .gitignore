@@ -9,6 +9,7 @@
 .history
 .svn/
 .env*
+lib/env_config.dart
 
 # IntelliJ related
 *.iml

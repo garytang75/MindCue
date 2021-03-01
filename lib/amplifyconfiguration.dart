@@ -1,3 +1,7 @@
+import './env_config.dart';
+const AppClientId = EnvConfig.APP_CLIENT_ID;
+const AppClientSecret = EnvConfig.APP_CLIENT_SECRET;
+
 const amplifyconfig = ''' {
     "UserAgent": "aws-amplify-cli/2.0",
     "Version": "1.0",
@@ -11,9 +15,9 @@ const amplifyconfig = ''' {
                 },
                 "CognitoUserPool": {
                     "Default": {
-                        "PoolId": "us-east-1_N4sv3wjm4",
-                        "AppClientId": "55b40r95lsek2doea9sr018rm3",
-                        "AppClientSecret":"1ouuvihmel0uf46gf2pegsolih08veug8t4d6hl6tct4f7e4qekq",
+                        "PoolId": "",
+                        "AppClientId": "$AppClientId",
+                        "AppClientSecret": "$AppClientSecret",
                         "Region": "us-east-1"
                     }
                 },

@@ -1,0 +1,14 @@
+environment_config:
+    path: env_config.dart
+    fields:
+      APP_CLIENT_ID:
+        env_var: APP_CLIENT_ID
+        const: true
+        default: ""
+      APP_CLIENT_SECRET:
+        env_var: APP_CLIENT_SECRET
+        const: true
+        default: ""
+
+    imports:
+      - dart:io

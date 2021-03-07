@@ -25,6 +25,7 @@ dependencies:
     sdk: flutter
   amplify_flutter: '<1.0.0'
   amplify_auth_cognito: '<1.0.0'
+  amplify_api: '<1.0.0'
 
   flutter_login: '<1.0.0'
   rflutter_alert: '<1.0.3'

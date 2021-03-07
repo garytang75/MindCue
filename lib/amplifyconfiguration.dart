@@ -14,6 +14,14 @@ const amplifyconfig = ''' {
                 "IdentityManager": {
                     "Default": {}
                 },
+                "awsAPIPlugin": {
+                    "<dev-lambda>": {
+                        "endpointType": "REST",
+                        "endpoint": "api-dev.mindcue.life",
+                        "region": "us-east-1",
+                        "authorizationType": "AMAZON_COGNITO_USER_POOLS"
+                    }
+                },
                 "CognitoUserPool": {
                     "Default": {
                         "PoolId": "$PoolId",

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './auth_service.dart';
+import './fetch_data.dart';
 
 class HelloWorld extends StatelessWidget {
   final VoidCallback shouldLogOut;
@@ -18,8 +18,8 @@ class HelloWorld extends StatelessWidget {
               //   )
               // ),
               FlatButton(
-                child: Text('Logout'),
-                onPressed: AuthService().logOut,
+                child: Text('Get request'),
+                onPressed: Fetch().testGetRequest,
                 color: Theme.of(context).accentColor)
           )
 

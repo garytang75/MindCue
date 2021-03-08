@@ -9,6 +9,14 @@ environment_config:
         env_var: APP_CLIENT_SECRET
         const: true
         default: ""
+      POOL_ID:
+        env_var: POOL_ID
+        const: true
+        default: ""
+      ENDPOINT:
+        env_var: ENDPOINT
+        const: true
+        default: ""
 
     imports:
       - dart:io

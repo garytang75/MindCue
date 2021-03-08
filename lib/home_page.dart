@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import './fetch_data.dart';
 
 class HelloWorld extends StatelessWidget {

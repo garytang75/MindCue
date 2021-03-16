@@ -18,7 +18,7 @@ class HelloWorld extends StatelessWidget {
               // ),
               FlatButton(
                 child: Text('Get request'),
-                onPressed: Fetch().testGetRequest,
+                onPressed: Fetch().testPostRequest,
                 color: Theme.of(context).accentColor)
           )
 

@@ -8,7 +8,7 @@ class Fetch {
 
     try {
       RestOptions options = RestOptions(
-          path: '/test'
+          path: '/get_user'
       );
       RestOperation restOperation = Amplify.API.get(
           restOptions: options
@@ -19,7 +19,6 @@ class Fetch {
       print(new String.fromCharCodes(response.data));
     } on ApiException catch (e) {
       print('GET call failed: $e');
-
     }
 
   }

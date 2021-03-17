@@ -1,6 +1,8 @@
 import './env_config.dart';
 const AppClientId = EnvConfig.APP_CLIENT_ID;
 const AppClientSecret = EnvConfig.APP_CLIENT_SECRET;
+const PoolId = EnvConfig.POOL_ID;
+const Endpoint = EnvConfig.ENDPOINT;
 
 const amplifyconfig = ''' {
     "UserAgent": "aws-amplify-cli/2.0",
@@ -15,7 +17,7 @@ const amplifyconfig = ''' {
                 },
                 "CognitoUserPool": {
                     "Default": {
-                        "PoolId": "",
+                        "PoolId": "$PoolId",
                         "AppClientId": "$AppClientId",
                         "AppClientSecret": "$AppClientSecret",
                         "Region": "us-east-1"
@@ -26,6 +28,18 @@ const amplifyconfig = ''' {
                         "authenticationFlowType": "USER_SRP_AUTH"
                     }
                 }
+            }
+        }
+    },
+    "api": {
+        "plugins": {
+            "awsAPIPlugin": {
+                 "mc-api": {
+                     "endpointType": "REST",
+                     "endpoint": "$Endpoint",
+                     "region": "us-east-1",
+                     "authorizationType": "AMAZON_COGNITO_USER_POOLS"
+                    }   
             }
         }
     }

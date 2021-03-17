@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+import 'dart:convert';
 
 import 'package:amplify_api/amplify_api.dart';
 import 'package:amplify_flutter/amplify.dart';
@@ -16,7 +17,7 @@ class Fetch {
       );
       RestResponse response = await restOperation.response;
       print('GET call succeeded');
-      // print(response);
+      print(response);
       print(new String.fromCharCodes(response.data));
     } on ApiException catch (e) {
       print('GET call failed: $e');
@@ -41,12 +42,16 @@ class Fetch {
       );
       RestResponse response = await restOperation.response;
       print('POST call succeeded');
+      var finalres = json.decode(String.fromCharCodes(response.data));
       print(new String.fromCharCodes(response.data));
+
+      print(finalres['input']);
     } on ApiException catch (e) {
       print('POST call failed: $e');
     }
 
   }
+  //print tokens
   // void fetchSession() async {
   //   try {
   //     CognitoAuthSession res = await Amplify.Auth.fetchAuthSession(

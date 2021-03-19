@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './auth_credentials.dart';
+import '../auth_credentials.dart';
 
 class LoginPage extends StatefulWidget {
   final VoidCallback shouldShowSignUp;
@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
         TextField(
           controller: _usernameController,
           decoration:
-          InputDecoration(icon: Icon(Icons.mail), labelText: 'Username'),
+              InputDecoration(icon: Icon(Icons.mail), labelText: 'Username'),
         ),
 
         // Password TextField
@@ -76,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
     print('password: $password');
 
     final credentials =
-    LoginCredentials(username: username, password: password);
+        LoginCredentials(username: username, password: password);
     widget.didProvideCredentials(credentials);
   }
 }

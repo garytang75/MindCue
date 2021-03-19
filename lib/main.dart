@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_api/amplify_api.dart';
+import 'package:flutter_auth2/page/journal_page.dart';
 import 'package:flutter_login/flutter_login.dart';
 // import 'package:amplify_analytics_pinpoint/amplify_analytics_pinpoint.dart';
 // import 'package:amplify_api_example/rest_api_view.dart';
 import 'package:amplify_core/amplify_core.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 
-import './login_page.dart';
-import './sign_up_page.dart';
+import 'page/login_page.dart';
+import 'page/sign_up_page.dart';
 import './auth_service.dart';
-import './verification_page.dart';
-import './home_page.dart';
+import 'page/verification_page.dart';
+import 'page/home_page.dart';
 import './amplifyconfiguration.dart';
+import 'page/questionnaires_page.dart';
+import 'page/textinput_page.dart';
+import 'widgets/circular_animation.dart';
 
 void main() {
   runApp(MyApp());
@@ -44,8 +48,6 @@ class _MyAppState extends State<MyApp> {
     Amplify.addPlugin(AmplifyAuthCognito());
     Amplify.addPlugin(AmplifyAPI());
 
-
-
     // Once Plugins are added, configure Amplify
     // Note: Amplify can only be configured once.
     try {
@@ -61,7 +63,6 @@ class _MyAppState extends State<MyApp> {
       print('EEEE: ');
       print(e);
     }
-
   }
 
   Widget build(BuildContext context) {
@@ -79,25 +80,29 @@ class _MyAppState extends State<MyApp> {
                   if (snapshot.data.authFlowStatus == AuthFlowStatus.login)
                     MaterialPage(
                         child: LoginPage(
-                            didProvideCredentials: _authService.loginWithCredentials,
+                            didProvideCredentials:
+                                _authService.loginWithCredentials,
                             shouldShowSignUp: _authService.showSignUp)),
 
                   // Show Sign Up Page
                   if (snapshot.data.authFlowStatus == AuthFlowStatus.signUp)
                     MaterialPage(
                         child: SignUpPage(
-                            didProvideCredentials: _authService.signUpWithCredentials,
+                            didProvideCredentials:
+                                _authService.signUpWithCredentials,
                             shouldShowLogin: _authService.showLogin)),
 
                   // Show Verification Code Page
-                  if (snapshot.data.authFlowStatus == AuthFlowStatus.verification)
-                    MaterialPage(child: VerificationPage(
-                        didProvideVerificationCode: _authService.verifyCode)),
+                  if (snapshot.data.authFlowStatus ==
+                      AuthFlowStatus.verification)
+                    MaterialPage(
+                        child: VerificationPage(
+                            didProvideVerificationCode:
+                                _authService.verifyCode)),
 
                   if (snapshot.data.authFlowStatus == AuthFlowStatus.session)
                     MaterialPage(
-                        child: HelloWorld(shouldLogOut: _authService.logOut))
-
+                        child: HomePage(shouldLogOut: _authService.logOut))
                 ],
                 onPopPage: (route, result) => route.didPop(result),
               );
@@ -106,11 +111,9 @@ class _MyAppState extends State<MyApp> {
               return Container(
                 alignment: Alignment.center,
                 child: CircularProgressIndicator(),
-
               );
             }
           }),
-
     );
   }
 }

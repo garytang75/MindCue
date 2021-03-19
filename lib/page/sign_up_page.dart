@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import './auth_credentials.dart';
-import './auth_service.dart';
+import '../auth_credentials.dart';
+import '../auth_service.dart';
 
 class SignUpPage extends StatefulWidget {
   final ValueChanged<SignUpCredentials> didProvideCredentials;
@@ -48,7 +48,7 @@ class _SignUpPageState extends State<SignUpPage> {
         TextField(
           controller: _usernameController,
           decoration:
-          InputDecoration(icon: Icon(Icons.person), labelText: 'Email'),
+              InputDecoration(icon: Icon(Icons.person), labelText: 'Email'),
         ),
 
         // // Email TextField
@@ -93,11 +93,8 @@ class _SignUpPageState extends State<SignUpPage> {
     print('email: $email');
     print('password: $password');
 
-    final credentials = SignUpCredentials(
-        username: username,
-        email: email,
-        password: password
-    );
+    final credentials =
+        SignUpCredentials(username: username, email: email, password: password);
     widget.didProvideCredentials(credentials);
   }
 }

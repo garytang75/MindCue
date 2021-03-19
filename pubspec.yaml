@@ -31,6 +31,8 @@ dependencies:
   rflutter_alert: ^2.0.2
 
   environment_config: ^2.2.5
+  
+  table_calendar: ^2.3.3
 
 
   # The following adds the Cupertino Icons font to your application.

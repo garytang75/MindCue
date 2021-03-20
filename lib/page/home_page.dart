@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../fetch_data.dart';
 import 'package:flutter_auth2/widgets/bottom_app_bar.dart';
 import 'package:flutter_auth2/widgets/circular_animation.dart';
 import 'package:flutter_auth2/widgets/calendar.dart';
@@ -14,6 +13,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         leading: new Icon(Icons.face),
         title: Text('Mood Chart'),
+
       ),
 
       //Mock up for calendar and scrollable past journals

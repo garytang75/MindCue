@@ -29,18 +29,38 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // final _amplify = Amplify();
   bool _amplifyConfigured = false;
+
   final _authService = AuthService();
+
   @override
   void initState() {
     super.initState();
     _configureAmplify();
-    // _authService.checkAuthStatus();
-    _authService.showLogin();
+    isSignedInStatus();
+  }
+
+  isSignedInStatus() async {
+    bool isSignedIn = await _isSignedIn();
+    if (!isSignedIn){
+      _authService.showLogin();
+    } else {
+      _authService.showHome();
+    }
+  }
+
+  Future<bool> _isSignedIn() async {
+    final session = await Amplify.Auth.fetchAuthSession();
+    // print(session.isSignedIn);
+    if (session.isSignedIn) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   void _configureAmplify() async {
+
     if (!mounted) return;
 
     // Add Pinpoint and Cognito Plugins
@@ -60,12 +80,12 @@ class _MyAppState extends State<MyApp> {
         _amplifyConfigured = true;
       });
     } catch (e) {
-      print('EEEE: ');
       print(e);
     }
   }
 
   Widget build(BuildContext context) {
+
     return MaterialApp(
       title: 'MindCue App',
       theme: ThemeData(visualDensity: VisualDensity.adaptivePlatformDensity),
@@ -74,8 +94,13 @@ class _MyAppState extends State<MyApp> {
           builder: (context, snapshot) {
             // If the stream has data
             if (snapshot.hasData) {
+              // print("AuthFlowStatus.session: ");
+              // print(AuthService.checkAuthStatus());
               return Navigator(
                 pages: [
+                  // if (snapshot.data.authFlowStatus == AuthFlowStatus.session)
+                  //   MaterialPage(
+                  //       child: HomePage(shouldLogOut: _authService.logOut))
                   // Show Login Page
                   if (snapshot.data.authFlowStatus == AuthFlowStatus.login)
                     MaterialPage(

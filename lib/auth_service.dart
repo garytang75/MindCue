@@ -53,7 +53,10 @@ class AuthService {
       print('Could not login - ${authError}');
     }
   }
-
+  void showHome() {
+    final state = AuthState(authFlowStatus: AuthFlowStatus.session);
+    authStateController.add(state);
+  }
 
   void signUpWithCredentials(SignUpCredentials credentials) async {
     try {
@@ -66,13 +69,6 @@ class AuthService {
           username: credentials.username,
           password: credentials.password,
           options: CognitoSignUpOptions(userAttributes: userAttributes));
-
-      // If we successfully get a result back, the next step should be to verify
-      // their email. If the sign up process is complete for whatever reason, we
-      // will simply login the user to the app.
-      if (result.isSignUpComplete) {
-        loginWithCredentials(credentials);
-      } else {
         // store the SignUpCredentials in _credentials for when the user verifies their email
         this._credentials = credentials;
 
@@ -80,7 +76,7 @@ class AuthService {
         // after successfully signing in and establishing that the sign up process is not complete.
         final state = AuthState(authFlowStatus: AuthFlowStatus.verification);
         authStateController.add(state);
-      }
+      // }
 
       // If the sign up fails for any reason, we will simply print out the error to the logs.
     } on AmplifyException catch (authError) {
@@ -131,5 +127,6 @@ class AuthService {
       final state = AuthState(authFlowStatus: AuthFlowStatus.login);
       authStateController.add(state);
     }
+
   }
 }

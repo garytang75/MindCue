@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_api/amplify_api.dart';
-import 'package:flutter_auth2/page/journal_page.dart';
-import 'package:flutter_login/flutter_login.dart';
 // import 'package:amplify_analytics_pinpoint/amplify_analytics_pinpoint.dart';
 // import 'package:amplify_api_example/rest_api_view.dart';
 import 'package:amplify_core/amplify_core.dart';
@@ -14,9 +12,6 @@ import './auth_service.dart';
 import 'page/verification_page.dart';
 import 'page/home_page.dart';
 import './amplifyconfiguration.dart';
-import 'page/questionnaires_page.dart';
-import 'page/textinput_page.dart';
-import 'widgets/circular_animation.dart';
 
 void main() {
   runApp(MyApp());
@@ -42,7 +37,7 @@ class _MyAppState extends State<MyApp> {
 
   isSignedInStatus() async {
     bool isSignedIn = await _isSignedIn();
-    if (!isSignedIn){
+    if (!isSignedIn) {
       _authService.showLogin();
     } else {
       _authService.showHome();
@@ -60,7 +55,6 @@ class _MyAppState extends State<MyApp> {
   }
 
   void _configureAmplify() async {
-
     if (!mounted) return;
 
     // Add Pinpoint and Cognito Plugins
@@ -85,7 +79,6 @@ class _MyAppState extends State<MyApp> {
   }
 
   Widget build(BuildContext context) {
-
     return MaterialApp(
       title: 'MindCue App',
       theme: ThemeData(visualDensity: VisualDensity.adaptivePlatformDensity),

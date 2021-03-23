@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class TextInput extends StatefulWidget {
   @override
@@ -30,6 +31,14 @@ class _TextInputState extends State<TextInput> {
                   onPressed: () {
                     print(_journalController.text);
                     _journalController.text = "";
+                    Fluttertoast.showToast(
+                        msg: "Your feeling is recorded",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.amber[900],
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                   },
                   child: Column(
                     children: [

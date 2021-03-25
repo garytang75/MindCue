@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth2/page/user_pprofile_page.dart';
 import 'circular_button.dart';
 import 'circular_animation.dart';
 
@@ -52,7 +53,10 @@ class BottomApp extends StatelessWidget {
                 height: 50,
                 icon: Icon(Icons.more_horiz, color: Colors.black),
                 onClick: () {
-                  print('2');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => UserProfile()),
+                  );
                 },
               )
             ],

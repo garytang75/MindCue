@@ -51,15 +51,15 @@ class Fetch {
 
   }
   // print tokens
-  void fetchSession() async {
-    try {
-      CognitoAuthSession res = await Amplify.Auth.fetchAuthSession(
-          options: CognitoSessionOptions(getAWSCredentials: true)
-      );
-      print('idToken: ' + res.userPoolTokens.idToken.toString());
-      print('accessToken: ' + res.userPoolTokens.accessToken.toString());
-    } on AuthException catch (e) {
-      print(e.message);
-    }
-  }
+  // void fetchSession() async {
+  //   try {
+  //     CognitoAuthSession res = await Amplify.Auth.fetchAuthSession(
+  //         options: CognitoSessionOptions(getAWSCredentials: true)
+  //     );
+  //     print('idToken: ' + res.userPoolTokens.idToken.toString());
+  //     print('accessToken: ' + res.userPoolTokens.accessToken.toString());
+  //   } on AuthException catch (e) {
+  //     print(e.message);
+  //   }
+  // }
 }

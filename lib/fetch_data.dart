@@ -6,6 +6,7 @@ import 'package:amplify_flutter/amplify.dart';
 
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 
+
 class Fetch {
   void testGetRequest() async {
     try {
@@ -50,16 +51,21 @@ class Fetch {
     }
 
   }
-  // print tokens
-  // void fetchSession() async {
-  //   try {
-  //     CognitoAuthSession res = await Amplify.Auth.fetchAuthSession(
-  //         options: CognitoSessionOptions(getAWSCredentials: true)
-  //     );
-  //     print('idToken: ' + res.userPoolTokens.idToken.toString());
-  //     print('accessToken: ' + res.userPoolTokens.accessToken.toString());
-  //   } on AuthException catch (e) {
-  //     print(e.message);
-  //   }
-  // }
+// print tokens
+  Future<String> fetchSession() async {
+    String userId;
+    try {
+      CognitoAuthSession res = await Amplify.Auth.fetchAuthSession(
+          options: CognitoSessionOptions(getAWSCredentials: true)
+      );
+      // print('idToken: ' + res.userPoolTokens.idToken.toString());
+      // print('accessToken: ' + res.userPoolTokens.accessToken.toString());
+      // print('idToken: '+ res.userSub.toString());
+      //user ID gererated in Cognito Pool
+      userId = res.userSub.toString();
+    } on AuthException catch (e) {
+      print(e.message);
+    }
+    return userId;
+  }
 }

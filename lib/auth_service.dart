@@ -7,7 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import './auth_credentials.dart';
 
 // state enumeration
-enum AuthFlowStatus { login, signUp, verification, session }
+enum AuthFlowStatus { login, signUp, verification, nickname, session }
 
 class AuthState {
   final AuthFlowStatus authFlowStatus;
@@ -113,12 +113,35 @@ class AuthService {
         loginWithCredentials(_credentials);
       } else {
         // sign up in not complete
-        print('sign up in not complete');
+        print('sign up is not complete');
       }
+      // final state = AuthState(authFlowStatus: AuthFlowStatus.nickname);
+      final state = AuthState(authFlowStatus: AuthFlowStatus.session);
+      authStateController.add(state);
     } on AuthException catch (authError) {
       print('Could not verify code - ${authError.message}');
     }
   }
+
+  // void getNickname(String verificationCode) async {
+  //   try {
+  //     // use _credentials to supply the username and pass the code entered from VerificationPage to confirmSignUp
+  //     final result = await Amplify.Auth.confirmSignUp(
+  //         username: _credentials.username, confirmationCode: verificationCode);
+  //
+  //     // If the sign up is complete, we login the user with _credentials.
+  //     if (result.isSignUpComplete) {
+  //       loginWithCredentials(_credentials);
+  //     } else {
+  //       // sign up in not complete
+  //       print('sign up in not complete');
+  //     }
+  //     final state = AuthState(authFlowStatus: AuthFlowStatus.nickname);
+  //     authStateController.add(state);
+  //   } on AuthException catch (authError) {
+  //     print('Could not verify code - ${authError.message}');
+  //   }
+  // }
 
   void logOut() async {
     try {

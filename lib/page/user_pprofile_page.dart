@@ -1,11 +1,8 @@
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
-import 'package:amplify_flutter/amplify.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:flutter_auth2/auth_service.dart';
 
 import '../auth_credentials.dart';
-import '../main.dart';
+import '../fetch_data.dart';
+
 
 class UserProfile extends StatefulWidget {
   @override
@@ -40,18 +37,19 @@ class _UserProfile extends State<UserProfile> {
               ]
               ),
               onPressed: () {
-                AuthService().logOut();
-                Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => MyApp()),
-              );
-              Fluttertoast.showToast(
-              msg: "Signing off",
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.BOTTOM,
-              timeInSecForIosWeb: 1,
-              fontSize: 12.0,
-              );
+                Fetch().fetchSession();
+                // AuthService().logOut();
+                // Navigator.push(
+                // context,
+                // MaterialPageRoute(builder: (context) => MyApp()),
+              // );
+              // Fluttertoast.showToast(
+              // msg: "Signing off",
+              // toastLength: Toast.LENGTH_SHORT,
+              // gravity: ToastGravity.BOTTOM,
+              // timeInSecForIosWeb: 1,
+              // fontSize: 12.0,
+              // );
 
               },
 

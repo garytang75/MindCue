@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth2/page/user_pprofile_page.dart';
+import '../fetch_data.dart';
 import 'circular_button.dart';
 import 'circular_animation.dart';
 
@@ -52,7 +54,15 @@ class BottomApp extends StatelessWidget {
                 height: 50,
                 icon: Icon(Icons.more_horiz, color: Colors.black),
                 onClick: () {
-                  print('2');
+                  //get user nickname from Cognito
+                  Fetch().fetchNickname().then((value) {
+                    final nickname = value;
+                  Navigator.push(
+                    context,
+                    //change page to user_profile page and pass userId
+                    MaterialPageRoute(builder: (context) => UserProfile(nickname: nickname)),
+                  );
+                  });
                 },
               )
             ],

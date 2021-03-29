@@ -2,12 +2,13 @@ import 'dart:async';
 import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_core/amplify_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import './auth_credentials.dart';
 
 // state enumeration
-enum AuthFlowStatus { login, signUp, verification, nickname, session }
+enum AuthFlowStatus { login, signUp, verification, session }
 
 class AuthState {
   final AuthFlowStatus authFlowStatus;
@@ -61,7 +62,7 @@ class AuthService {
       print('Could not login - ${authError}');
       //On exception, create a toast to notify user that they can't log in.
       Fluttertoast.showToast(
-        msg: "Could not login, there is a issue with your username or password",
+        msg: "Could not login, there is an issue with your username or password",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
@@ -78,7 +79,7 @@ class AuthService {
   void signUpWithCredentials(SignUpCredentials credentials) async {
     try {
       // userAttributes needs to be passed in the user's email as part of the sign up.
-      final userAttributes = {'email': credentials.email};
+      final userAttributes = {'email': credentials.email, 'nickname': credentials.nickname };
 
       // we pass in the username and password, along with the userAttributes containing
       // the email to sign up with Cognito
@@ -115,33 +116,12 @@ class AuthService {
         // sign up in not complete
         print('sign up is not complete');
       }
-      // final state = AuthState(authFlowStatus: AuthFlowStatus.nickname);
       final state = AuthState(authFlowStatus: AuthFlowStatus.session);
       authStateController.add(state);
     } on AuthException catch (authError) {
       print('Could not verify code - ${authError.message}');
     }
   }
-
-  // void getNickname(String verificationCode) async {
-  //   try {
-  //     // use _credentials to supply the username and pass the code entered from VerificationPage to confirmSignUp
-  //     final result = await Amplify.Auth.confirmSignUp(
-  //         username: _credentials.username, confirmationCode: verificationCode);
-  //
-  //     // If the sign up is complete, we login the user with _credentials.
-  //     if (result.isSignUpComplete) {
-  //       loginWithCredentials(_credentials);
-  //     } else {
-  //       // sign up in not complete
-  //       print('sign up in not complete');
-  //     }
-  //     final state = AuthState(authFlowStatus: AuthFlowStatus.nickname);
-  //     authStateController.add(state);
-  //   } on AuthException catch (authError) {
-  //     print('Could not verify code - ${authError.message}');
-  //   }
-  // }
 
   void logOut() async {
     try {

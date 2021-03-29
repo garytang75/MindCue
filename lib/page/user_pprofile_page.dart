@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
-import '../auth_credentials.dart';
-import '../fetch_data.dart';
+import '../auth_service.dart';
+import '../main.dart';
 
 
 class UserProfile extends StatefulWidget {
+  final nickname;
+  UserProfile({this.nickname});
   @override
-  _UserProfile createState() => _UserProfile();
+  _UserProfile createState() => _UserProfile(nickname:nickname);
 }
 
 class _UserProfile extends State<UserProfile> {
+  final nickname;
+  _UserProfile({this.nickname});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,9 +25,8 @@ class _UserProfile extends State<UserProfile> {
         shrinkWrap: true,
     padding: const EdgeInsets.all(20.0),
     children: [
-            // Username should be displayed here, for now just hard coded
             Center(
-              child: Text("Hello User")
+              child: Text("Hi $nickname!")
             ),
             // button sign out
             ElevatedButton(
@@ -37,19 +41,18 @@ class _UserProfile extends State<UserProfile> {
               ]
               ),
               onPressed: () {
-                Fetch().fetchSession();
-                // AuthService().logOut();
-                // Navigator.push(
-                // context,
-                // MaterialPageRoute(builder: (context) => MyApp()),
-              // );
-              // Fluttertoast.showToast(
-              // msg: "Signing off",
-              // toastLength: Toast.LENGTH_SHORT,
-              // gravity: ToastGravity.BOTTOM,
-              // timeInSecForIosWeb: 1,
-              // fontSize: 12.0,
-              // );
+                AuthService().logOut();
+                Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MyApp()),
+              );
+              Fluttertoast.showToast(
+              msg: "Signing off",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              timeInSecForIosWeb: 1,
+              fontSize: 12.0,
+              );
 
               },
 

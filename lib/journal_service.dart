@@ -9,12 +9,12 @@ import './fetch_data.dart';
 class Journal {
 
   void sendDairy(String text) async {
-    var userId = Fetch().fetchSession();
+    var userId = Fetch().fetchUserId();
     var date = DateTime.now();
     var text = "This is a journal entry text";
     try {
       RestOptions options = RestOptions(
-          path: 'diaries/put_diary',
+          path: '/test/add_user', //diaries/put_diary
           body:
           Uint8List.fromList(
               '{'
@@ -23,7 +23,7 @@ class Journal {
                   '\'text\':\'$text\''
                   '}'.codeUnits)
       );
-      RestOperation restOperation = Amplify.API.put(
+      RestOperation restOperation = Amplify.API.post(
           restOptions: options
       );
       RestResponse response = await restOperation.response;

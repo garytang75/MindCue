@@ -61,7 +61,7 @@ class AuthService {
       print('Could not login - ${authError}');
       //On exception, create a toast to notify user that they can't log in.
       Fluttertoast.showToast(
-        msg: "Could not login, there is a issue with your username or password",
+        msg: "Could not login. Incorrect Username or Password.",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,

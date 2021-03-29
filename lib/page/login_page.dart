@@ -25,6 +25,10 @@ class _LoginPageState extends State<LoginPage> {
       body: SafeArea(
           minimum: EdgeInsets.symmetric(horizontal: 40),
           child: Stack(children: [
+            Container(
+              height: 200,
+              child: Image(image: AssetImage('assets/logo.png')),
+            ),
             // Login Form
             _loginForm(),
             // Sign Up Button

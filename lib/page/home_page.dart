@@ -49,12 +49,7 @@ class HomePage extends StatelessWidget {
       body: Container(
           child: Stack(
         children: [
-          Calendar(),
-          Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-            Container(
-              width: double.infinity,
-              height: 0,
-            ),
+          Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             Column(
               children: journals.map((jr) {
                 return Card(
@@ -78,6 +73,7 @@ class HomePage extends StatelessWidget {
               }).toList(),
             ),
           ]),
+          Calendar(),
           //Bottom App Bar
           BottomApp(),
           //CircularAnimation Widget

@@ -62,11 +62,8 @@ class AuthService {
       print('Could not login - ${authError}');
       //On exception, create a toast to notify user that they can't log in.
       Fluttertoast.showToast(
-<<<<<<< HEAD
-        msg: "Could not login. Incorrect Username or Password.",
-=======
-        msg: "Could not login, there is an issue with your username or password",
->>>>>>> 55e28af1eb2b28af2621d6d4f71b9ad81eec87a3
+        msg:
+            "Could not login, there is an issue with your username or password",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
@@ -83,7 +80,10 @@ class AuthService {
   void signUpWithCredentials(SignUpCredentials credentials) async {
     try {
       // userAttributes needs to be passed in the user's email as part of the sign up.
-      final userAttributes = {'email': credentials.email, 'nickname': credentials.nickname };
+      final userAttributes = {
+        'email': credentials.email,
+        'nickname': credentials.nickname
+      };
 
       // we pass in the username and password, along with the userAttributes containing
       // the email to sign up with Cognito

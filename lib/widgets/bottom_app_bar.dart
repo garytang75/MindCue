@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth2/page/journal_page.dart';
 import 'package:flutter_auth2/page/user_pprofile_page.dart';
 import '../fetch_data.dart';
 import 'circular_button.dart';
@@ -27,7 +28,10 @@ class BottomApp extends StatelessWidget {
                 height: 50,
                 icon: Icon(Icons.menu_book, color: Colors.black),
                 onClick: () {
-                  Navigator.pushNamed(context, '/journal');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => JournalPage()),
+                  );
                 },
               ),
               CircularButton(
@@ -57,11 +61,13 @@ class BottomApp extends StatelessWidget {
                   //get user nickname from Cognito
                   Fetch().fetchNickname().then((value) {
                     final nickname = value;
-                  Navigator.push(
-                    context,
-                    //change page to user_profile page and pass userId
-                    MaterialPageRoute(builder: (context) => UserProfile(nickname: nickname)),
-                  );
+                    Navigator.push(
+                      context,
+                      //change page to user_profile page and pass userId
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              UserProfile(nickname: nickname)),
+                    );
                   });
                 },
               )

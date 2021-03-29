@@ -68,8 +68,9 @@ class _CircularAnimationState extends State<CircularAnimation>
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(children: [
-      Container(
+    return Align(
+      alignment: Alignment(0, .97),
+      child: Container(
         //CircularButton Stack
         child: Stack(
           children: [
@@ -182,6 +183,6 @@ class _CircularAnimationState extends State<CircularAnimation>
           ],
         ),
       ),
-    ]);
+    );
   }
 }

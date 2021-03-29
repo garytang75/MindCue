@@ -20,5 +20,17 @@ final List<Journal> journals = [
   Journal(
       userId: 'gary',
       createdAt: DateTime.now(),
-      journals: "abcddfjkd i like thiss!!!!!!!!")
+      journals: "abcddfjkd i like thiss!!!!!!!!"),
+  Journal(
+      userId: 'gary',
+      createdAt: DateTime.now(),
+      journals: "abcddfjkd i like thiss!!!!!!!!"),
+  Journal(
+      userId: 'gary',
+      createdAt: DateTime.now(),
+      journals: "abcddfjkd i like thiss!!!!!!!!"),
+  Journal(
+      userId: 'gary',
+      createdAt: DateTime.now(),
+      journals: "abcddfjkd i like thiss!!!!!!!!"),
 ];

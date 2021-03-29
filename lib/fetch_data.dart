@@ -83,8 +83,8 @@ class Fetch {
       // res.forEach((value) {
       //   print("value: "+ value.userAttributeKey);
       // });
-      var nick = res.where((element) => element.userAttributeKey == 'nickname');
-      nickname = nick.first.value;
+      nickname = res.where((element) => element.userAttributeKey == 'nickname').first.value;
+      // nickname = nick.first.value;
       // print(nickname);
       // print("result : " + resMap['nickname'].toString());
       // nickname = resMap['nickname'].toString();

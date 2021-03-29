@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../auth_credentials.dart';
-import '../auth_service.dart';
 
 class SignUpPage extends StatefulWidget {
   final ValueChanged<SignUpCredentials> didProvideCredentials;
@@ -16,8 +15,8 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final _usernameController = TextEditingController();
-  //currently username = email address
-  //final _emailController = TextEditingController();
+  //username is an email address
+  final _nicknameController = TextEditingController();
   final _passwordController = TextEditingController();
 
   @override
@@ -34,7 +33,7 @@ class _SignUpPageState extends State<SignUpPage> {
               alignment: Alignment.bottomCenter,
               child: FlatButton(
                   onPressed: widget.shouldShowLogin,
-                  child: Text('Already have an account? Login.')),
+                  child: Text('Already have an account? Log in.')),
             )
           ])),
     );
@@ -44,20 +43,18 @@ class _SignUpPageState extends State<SignUpPage> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // Username TextField
+        // Name TextField
+        TextField(
+          controller: _nicknameController,
+          decoration:
+          InputDecoration(icon: Icon(Icons.account_circle), labelText: 'Name'),
+        ),
+        // Email TextField
         TextField(
           controller: _usernameController,
           decoration:
-              InputDecoration(icon: Icon(Icons.person), labelText: 'Email'),
+              InputDecoration(icon: Icon(Icons.mail), labelText: 'Email'),
         ),
-
-        // // Email TextField
-        // TextField(
-        //   controller: _emailController,
-        //   decoration:
-        //   InputDecoration(icon: Icon(Icons.mail), labelText: 'Email'),
-        // ),
-
         // Password TextField
         TextField(
           controller: _passwordController,
@@ -75,26 +72,33 @@ class _SignUpPageState extends State<SignUpPage> {
         ///////////////////////////////
         ///this button here just for testing
         /// delete in actual app
-        FlatButton(
-            child: Text('Logout'),
-            onPressed: AuthService().logOut,
-            color: Theme.of(context).accentColor)
+        // FlatButton(
+        //     child: Text('Logout'),
+        //     onPressed: AuthService().logOut,
+        //     color: Theme.of(context).accentColor)
         ///////////////////////////////
       ],
     );
   }
 
   void _signUp() {
+    var nickname;
+    if (_nicknameController.text.trim() == ""){
+      nickname = "Friend";
+    } else {
+      nickname = _nicknameController.text.trim();
+    }
     final username = _usernameController.text.trim();
     final email = _usernameController.text.trim();
     final password = _passwordController.text.trim();
 
+    print('nickname: $nickname');
     print('username: $username');
     print('email: $email');
     print('password: $password');
 
     final credentials =
-        SignUpCredentials(username: username, email: email, password: password);
+        SignUpCredentials(nickname: nickname, username: username, email: email, password: password);
     widget.didProvideCredentials(credentials);
   }
 }

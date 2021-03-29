@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_core/amplify_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import './auth_credentials.dart';
@@ -61,7 +62,7 @@ class AuthService {
       print('Could not login - ${authError}');
       //On exception, create a toast to notify user that they can't log in.
       Fluttertoast.showToast(
-        msg: "Could not login, there is a issue with your username or password",
+        msg: "Could not login, there is an issue with your username or password",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
@@ -78,7 +79,7 @@ class AuthService {
   void signUpWithCredentials(SignUpCredentials credentials) async {
     try {
       // userAttributes needs to be passed in the user's email as part of the sign up.
-      final userAttributes = {'email': credentials.email};
+      final userAttributes = {'email': credentials.email, 'nickname': credentials.nickname };
 
       // we pass in the username and password, along with the userAttributes containing
       // the email to sign up with Cognito
@@ -113,8 +114,10 @@ class AuthService {
         loginWithCredentials(_credentials);
       } else {
         // sign up in not complete
-        print('sign up in not complete');
+        print('sign up is not complete');
       }
+      final state = AuthState(authFlowStatus: AuthFlowStatus.session);
+      authStateController.add(state);
     } on AuthException catch (authError) {
       print('Could not verify code - ${authError.message}');
     }

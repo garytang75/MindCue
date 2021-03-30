@@ -47,8 +47,8 @@ dev_dependencies:
     sdk: flutter
 
   flutter_launcher_icons: "^0.8.0"
-  
 
+  
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -63,8 +63,13 @@ flutter:
   # To add assets to your application, add an assets section, like this:
 
   assets:
-    - assets/logo.png
-
+    - assets/icon/bars.png
+    - assets/icon/book.png
+    - assets/icon/calendar.png
+    - assets/icon/clipboard.png
+    - assets/icon/logo.png
+    - assets/icon/mic1.png
+    - assets/icon/mindcue.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

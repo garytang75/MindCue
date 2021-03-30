@@ -81,7 +81,11 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'MindCue App',
-      theme: ThemeData(visualDensity: VisualDensity.adaptivePlatformDensity),
+      theme: ThemeData(
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          appBarTheme: AppBarTheme(
+            color: Colors.lightBlue[50],
+          )),
       home: StreamBuilder<AuthState>(
           stream: _authService.authStateController.stream,
           builder: (context, snapshot) {

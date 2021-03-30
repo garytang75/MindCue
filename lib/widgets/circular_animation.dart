@@ -4,6 +4,7 @@ import 'circular_button.dart';
 import '../page/textinput_page.dart';
 import 'package:flutter_auth2/main.dart';
 import '../page/questionnaires_page.dart';
+import 'image_button.dart';
 
 class CircularAnimation extends StatefulWidget {
   @override
@@ -69,7 +70,7 @@ class _CircularAnimationState extends State<CircularAnimation>
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment(0, .97),
+      alignment: Alignment(0, .94),
       child: Container(
         //CircularButton Stack
         child: Stack(
@@ -96,10 +97,7 @@ class _CircularAnimationState extends State<CircularAnimation>
                       color: Colors.lime[700],
                       width: 50,
                       height: 50,
-                      icon: Icon(
-                        Icons.mic,
-                        color: Colors.white,
-                      ),
+                      icon: Icon(Icons.mic_none_sharp, color: Colors.white),
                       onClick: () {
                         print('voice input');
                       },
@@ -167,7 +165,8 @@ class _CircularAnimationState extends State<CircularAnimation>
                     height: 60,
                     icon: Icon(
                       Icons.add,
-                      color: Colors.white,
+                      size: 30,
+                      color: Colors.black,
                     ),
                     onClick: () {
                       if (animationController.isCompleted) {

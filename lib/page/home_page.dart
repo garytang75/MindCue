@@ -12,8 +12,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: new Icon(Icons.face),
-        title: Text('Mood Chart'),
+        leading: new Icon(Icons.face, color: Colors.black),
+        title: Text('Mood Chart', style: TextStyle(color: Colors.black)),
         // actions: [
         //   Padding(
         //       padding: EdgeInsets.only(right: 20.0),

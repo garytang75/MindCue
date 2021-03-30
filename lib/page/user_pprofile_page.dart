@@ -5,6 +5,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../auth_service.dart';
 import '../main.dart';
 
+/*
+3/28/2021 Gary, Changed few positioned on the widget
+*/
 class UserProfile extends StatefulWidget {
   final nickname;
   UserProfile({this.nickname});
@@ -52,7 +55,9 @@ class _UserProfile extends State<UserProfile> {
         //shrinkWrap: true,
         //padding: const EdgeInsets.all(20.0),
         children: [
-          Text("Hi $nickname!"),
+          Text(
+            "Hi $nickname!",
+          ),
 
           // version display, for now hard coded, later should be grabbed from github release version
           // should be at the bottom of the screen

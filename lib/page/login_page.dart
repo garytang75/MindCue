@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Stack(children: [
             Container(
               height: 200,
-              child: Image(image: AssetImage('assets/logo.png')),
+              child: Image(image: AssetImage('assets/icon/logo.png')),
             ),
             // Login Form
             _loginForm(),

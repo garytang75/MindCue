@@ -3,78 +3,106 @@ import 'package:flutter_auth2/page/journal_page.dart';
 import 'package:flutter_auth2/page/user_pprofile_page.dart';
 import '../fetch_data.dart';
 import 'circular_button.dart';
-import 'circular_animation.dart';
 
 class BottomApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-      color: Colors.transparent,
-      alignment: Alignment.bottomCenter,
-      child: Stack(children: [
-        Container(
-          width: 500,
+    return Stack(children: [
+      Align(
+        alignment: Alignment.bottomCenter,
+        child: Container(
+          width: double.infinity,
           decoration: BoxDecoration(
-              color: Colors.orange[100], shape: BoxShape.rectangle),
-          height: 40,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              CircularButton(
-                color: Colors.transparent,
-                width: 50,
-                height: 50,
-                icon: Icon(Icons.menu_book, color: Colors.black),
-                onClick: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => JournalPage()),
-                  );
-                },
-              ),
-              CircularButton(
-                color: Colors.transparent,
-                width: 50,
-                height: 50,
-                icon: Icon(Icons.bar_chart, color: Colors.black),
-                onClick: () {
-                  print('2');
-                },
-              ),
-              CircularButton(
-                color: Colors.transparent,
-                width: 50,
-                height: 50,
-                icon: Icon(Icons.date_range, color: Colors.black),
-                onClick: () {
-                  print('2');
-                },
-              ),
-              CircularButton(
-                color: Colors.transparent,
-                width: 50,
-                height: 50,
-                icon: Icon(Icons.more_horiz, color: Colors.black),
-                onClick: () {
-                  //get user nickname from Cognito
-                  Fetch().fetchNickname().then((value) {
-                    final nickname = value;
+              color: Colors.lightBlue[50], shape: BoxShape.rectangle),
+          height: 50,
+        ),
+      ),
+      Align(
+        alignment: Alignment.bottomCenter,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  iconSize: 30,
+                  icon: ImageIcon(AssetImage('assets/icon/book.png')),
+                  onPressed: () {
                     Navigator.push(
                       context,
-                      //change page to user_profile page and pass userId
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              UserProfile(nickname: nickname)),
+                      MaterialPageRoute(builder: (context) => JournalPage()),
                     );
-                  });
-                },
-              )
-            ],
-          ),
+                  },
+                ),
+                Text(
+                  'journal',
+                  style: TextStyle(fontSize: 10),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  icon: ImageIcon(AssetImage('assets/icon/bars.png')),
+                  onPressed: () {
+                    print('2');
+                  },
+                ),
+                Text(
+                  'stats',
+                  style: TextStyle(fontSize: 10),
+                )
+              ],
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  icon: ImageIcon(AssetImage('assets/icon/calendar.png')),
+                  onPressed: () {
+                    print('2');
+                  },
+                ),
+                Text(
+                  'calendar',
+                  style: TextStyle(fontSize: 10),
+                )
+              ],
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CircularButton(
+                  color: Colors.transparent,
+                  width: 50,
+                  height: 50,
+                  icon: Icon(Icons.more_horiz_outlined, color: Colors.black38),
+                  onClick: () {
+                    //get user nickname from Cognito
+                    Fetch().fetchNickname().then((value) {
+                      final nickname = value;
+                      Navigator.push(
+                        context,
+                        //change page to user_profile page and pass userId
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                UserProfile(nickname: nickname)),
+                      );
+                    });
+                  },
+                ),
+                Text(
+                  'more',
+                  style: TextStyle(fontSize: 10),
+                )
+              ],
+            ),
+          ],
         ),
-      ]),
-    );
+      ),
+    ]);
   }
 }

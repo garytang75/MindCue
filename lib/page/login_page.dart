@@ -22,53 +22,153 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       // safe area to make sure properly visible on different devices
-      body: SafeArea(
-          minimum: EdgeInsets.symmetric(horizontal: 40),
-          child: Stack(children: [
-            Container(
-              height: 200,
-              child: Image(image: AssetImage('assets/icon/logo.png')),
+      body: Container(
+          child: Stack(
+        children: [
+          //top logo widget
+          _toplogo(),
+          //cloud positioned widget
+          _cloud(),
+          //background bottom positioned widget
+          _background(),
+          // Login Form
+          _loginForm(),
+          Positioned(
+            top: 200,
+            left: 100,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Hey!',
+                  style: TextStyle(
+                    color: Colors.yellowAccent[700],
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'Happy to see you again!',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
             ),
-            // Login Form
-            _loginForm(),
-            // Sign Up Button
-            Container(
-              alignment: Alignment.bottomCenter,
-              child: FlatButton(
-                  onPressed: widget.shouldShowSignUp,
-                  child: Text('Don\'t have an account? Sign up.')),
-            )
-          ])),
+          ),
+
+          // Sign Up Button
+          Positioned(
+            bottom: 70,
+            left: 0,
+            right: 0,
+            child: Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Don\'t have an account?'),
+                  TextButton(
+                      onPressed: widget.shouldShowSignUp,
+                      child: Text('Sign up.')),
+                ],
+              ),
+            ),
+          ),
+        ],
+      )),
     );
   }
 
   // UI for the username and password text fields, login button
   Widget _loginForm() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        // Username TextField
-        TextField(
-          controller: _usernameController,
-          decoration:
-              InputDecoration(icon: Icon(Icons.mail), labelText: 'Email'),
-        ),
+    return Center(
+      child: SafeArea(
+        minimum: EdgeInsets.symmetric(horizontal: 40),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Username TextField
+            TextField(
+              controller: _usernameController,
+              decoration:
+                  InputDecoration(icon: Icon(Icons.mail), labelText: 'Email'),
+            ),
 
-        // Password TextField
-        TextField(
-          controller: _passwordController,
-          decoration: InputDecoration(
-              icon: Icon(Icons.lock_open), labelText: 'Password'),
-          obscureText: true,
-          keyboardType: TextInputType.visiblePassword,
-        ),
+            // Password TextField
+            TextField(
+              controller: _passwordController,
+              decoration: InputDecoration(
+                  icon: Icon(Icons.lock_open), labelText: 'Password'),
+              obscureText: true,
+              keyboardType: TextInputType.visiblePassword,
+            ),
 
-        // Login Button
-        FlatButton(
-            onPressed: _login,
-            child: Text('Log in'),
-            color: Theme.of(context).accentColor)
-      ],
+            // Login Button
+            TextButton(
+              onPressed: _login,
+              child: Text('Log in', style: TextStyle(color: Colors.black)),
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Colors.blueGrey[400]),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                    side: BorderSide(color: Colors.blueGrey[400]),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _background() {
+    return Positioned.fill(
+      child: Image.asset(
+        'assets/icon/back.png',
+        fit: BoxFit.fitWidth,
+        alignment: Alignment.bottomLeft,
+      ),
+    );
+  }
+
+//top logo widget
+  Widget _toplogo() {
+    return Align(
+      alignment: Alignment.topCenter,
+      child: SafeArea(
+        child: Wrap(
+          children: [
+            Image.asset(
+              'assets/icon/logo2.png',
+              alignment: Alignment.topCenter,
+              height: 150,
+              width: 150,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _cloud() {
+    return Align(
+      alignment: Alignment.topCenter,
+      child: SafeArea(
+        child: Wrap(
+          children: [
+            Image.asset(
+              'assets/icon/cloud.png',
+              height: 275,
+              width: 300,
+            ),
+          ],
+        ),
+      ),
     );
   }
 

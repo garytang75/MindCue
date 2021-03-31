@@ -70,6 +70,9 @@ flutter:
     - assets/icon/logo.png
     - assets/icon/mic1.png
     - assets/icon/mindcue.png
+    - assets/icon/back.png
+    - assets/icon/logo2.png
+    - assets/icon/cloud.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

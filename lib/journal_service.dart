@@ -42,4 +42,61 @@ class Journal {
 
   }
 
+  void deleteDairy(String date) async {
+    String userId = await Fetch().fetchUserId();
+
+    try {
+      RestOptions options = RestOptions(
+          path: '/diaries/delete_diary',
+          body:
+          Uint8List.fromList(
+              '{'
+                  '\'id\':\'$userId\','
+                  '\'date\':\'\','
+                  '\'time\':\'\''
+                  '}'.codeUnits)
+      );
+      RestOperation restOperation = Amplify.API.delete(
+          restOptions: options
+      );
+      RestResponse response = await restOperation.response;
+      print('PUT call sendDairy succeeded');
+      // var finalres = json.decode(String.fromCharCodes(response.data));
+      // print(new String.fromCharCodes(response.data));
+
+      // print(finalres['input']);
+    } on ApiException catch (e) {
+      print('PUT call sendDairy failed: $e');
+    }
+
+  }
+
+  void editDairy(String text, String date) async {
+    String userId = await Fetch().fetchUserId();
+
+    try {
+      RestOptions options = RestOptions(
+          path: '/diaries/delete_diary',
+          body:
+          Uint8List.fromList(
+              '{'
+                  '\'id\':\'$userId\','
+                  '\'date\':\'\','
+                  '\'time\':\'\''
+                  '}'.codeUnits)
+      );
+      RestOperation restOperation = Amplify.API.delete(
+          restOptions: options
+      );
+      RestResponse response = await restOperation.response;
+      print('PUT call sendDairy succeeded');
+      // var finalres = json.decode(String.fromCharCodes(response.data));
+      // print(new String.fromCharCodes(response.data));
+
+      // print(finalres['input']);
+    } on ApiException catch (e) {
+      print('PUT call sendDairy failed: $e');
+    }
+
+  }
 }

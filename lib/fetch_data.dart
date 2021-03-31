@@ -74,20 +74,7 @@ class Fetch {
     String nickname;
     try {
       var res = await Amplify.Auth.fetchUserAttributes();
-      //create map to store all info about user
-      // var resMap = new Map();
-      res.forEach((value) {
-        // resMap[value.userAttributeKey] = value.value;
-        print(value.userAttributeKey);
-      });
-      // res.forEach((value) {
-      //   print("value: "+ value.userAttributeKey);
-      // });
       nickname = res.where((element) => element.userAttributeKey == 'nickname').first.value;
-      // nickname = nick.first.value;
-      // print(nickname);
-      // print("result : " + resMap['nickname'].toString());
-      // nickname = resMap['nickname'].toString();
     } on AuthException catch (e) {
       print(e.message);
     }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_auth2/widgets/mood_icons.dart';
 
 import '../fetch_data.dart';
 import '../journal_service.dart';
@@ -18,6 +19,7 @@ class _TextInputState extends State<TextInput> {
         appBar: AppBar(
           title: Text('Text me'),
         ),
+
         body: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -33,7 +35,11 @@ class _TextInputState extends State<TextInput> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Journal().sendDairy(_journalController.text);
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) => popupMoodIcons(context),
+                    );
+                    // Journal().sendDairy(_journalController.text);
                     print(_journalController.text);
                     _journalController.text = "";
                     Fluttertoast.showToast(
@@ -51,6 +57,14 @@ class _TextInputState extends State<TextInput> {
                       Text('I am done!')
                     ],
                   ),
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(new Color(0xFFFDBC59)),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                            )
+                        )
+                    )
                 )
               ],
             )));

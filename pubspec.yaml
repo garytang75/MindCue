@@ -74,6 +74,13 @@ flutter:
     - assets/icon/logo2.png
     - assets/icon/cloud.png
     - assets/icon/appicon.png
+    # mood icons
+    - assets/icon/mood-angry.png
+    - assets/icon/mood-love.png
+    - assets/icon/mood-cry.png
+    - assets/icon/mood-happy.png
+    - assets/icon/mood-laugh.png
+    - assets/icon/mood-sad.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

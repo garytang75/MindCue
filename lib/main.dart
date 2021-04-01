@@ -84,7 +84,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
           visualDensity: VisualDensity.adaptivePlatformDensity,
           appBarTheme: AppBarTheme(
-            color: Colors.lightBlue[50],
+            color: Color(0xFFCEE2EE),
           )),
       home: StreamBuilder<AuthState>(
           stream: _authService.authStateController.stream,

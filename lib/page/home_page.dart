@@ -14,31 +14,6 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         leading: new Icon(Icons.face, color: Colors.black),
         title: Text('Mood Chart', style: TextStyle(color: Colors.black)),
-        // actions: [
-        //   Padding(
-        //       padding: EdgeInsets.only(right: 20.0),
-        //       child: TextButton(
-        //         onPressed: () {
-        //           AuthService().logOut();
-        //           Navigator.push(
-        //             context,
-        //             MaterialPageRoute(builder: (context) => MyApp()),
-        //           );
-        //           Fluttertoast.showToast(
-        //             msg: "Signing off",
-        //             toastLength: Toast.LENGTH_SHORT,
-        //             gravity: ToastGravity.BOTTOM,
-        //             timeInSecForIosWeb: 1,
-        //             fontSize: 12.0,
-        //           );
-        //         },
-        //         child: Icon(
-        //           Icons.logout,
-        //           size: 26,
-        //           color: Colors.amber,
-        //         ),
-        //       ))
-        // ],
       ),
 
       //Mock up for calendar and scrollable past journals

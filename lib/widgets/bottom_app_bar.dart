@@ -13,8 +13,8 @@ class BottomApp extends StatelessWidget {
         child: Container(
           width: double.infinity,
           decoration: BoxDecoration(
-              color: Colors.lightBlue[50], shape: BoxShape.rectangle),
-          height: 50,
+              color: Color(0xFFCEE2EE), shape: BoxShape.rectangle),
+          height: 55,
         ),
       ),
       Align(

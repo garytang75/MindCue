@@ -42,8 +42,8 @@ class _LoginPageState extends State<LoginPage> {
                 Text(
                   'Hey!',
                   style: TextStyle(
-                    color: Colors.yellowAccent[700],
-                    fontSize: 15,
+                    color: Color(0xFFFDBC59),
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                   'Happy to see you again!',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 15,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -111,11 +111,11 @@ class _LoginPageState extends State<LoginPage> {
               child: Text('Log in', style: TextStyle(color: Colors.black)),
               style: ButtonStyle(
                 backgroundColor:
-                    MaterialStateProperty.all<Color>(Colors.blueGrey[400]),
+                    MaterialStateProperty.all<Color>(Color(0xFFCEE2EE)),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18.0),
-                    side: BorderSide(color: Colors.blueGrey[400]),
+                    side: BorderSide(color: Color(0xFFCEE2EE)),
                   ),
                 ),
               ),

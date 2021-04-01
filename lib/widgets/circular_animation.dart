@@ -70,7 +70,7 @@ class _CircularAnimationState extends State<CircularAnimation>
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment(0, .94),
+      alignment: Alignment(0, .92),
       child: Container(
         //CircularButton Stack
         child: Stack(
@@ -94,9 +94,9 @@ class _CircularAnimationState extends State<CircularAnimation>
                       ..scale(degTwoTranslationAnimation.value),
                     alignment: Alignment.center,
                     child: CircularButton(
-                      color: Colors.lime[700],
-                      width: 50,
-                      height: 50,
+                      color: Color(0xFF8FC2E1),
+                      width: 60,
+                      height: 60,
                       icon: Icon(Icons.mic_none_sharp, color: Colors.white),
                       onClick: () {
                         print('voice input');
@@ -113,9 +113,9 @@ class _CircularAnimationState extends State<CircularAnimation>
                       ..scale(degThreeTranslationAnimation.value),
                     alignment: Alignment.center,
                     child: CircularButton(
-                      color: Colors.purpleAccent,
-                      width: 50,
-                      height: 50,
+                      color: Color(0xFFF19679),
+                      width: 60,
+                      height: 60,
                       icon: Icon(
                         Icons.sentiment_neutral_outlined,
                         color: Colors.white,
@@ -139,9 +139,9 @@ class _CircularAnimationState extends State<CircularAnimation>
                       ..scale(degOneTranslationAnimation.value),
                     alignment: Alignment.center,
                     child: CircularButton(
-                      color: Colors.indigoAccent,
-                      width: 50,
-                      height: 50,
+                      color: Color(0xFFA7D466),
+                      width: 60,
+                      height: 60,
                       icon: Icon(
                         Icons.note_add_outlined,
                         color: Colors.white,
@@ -160,7 +160,7 @@ class _CircularAnimationState extends State<CircularAnimation>
                       getRadiansFromDegree(rotationAnimation.value)),
                   alignment: Alignment.center,
                   child: CircularButton(
-                    color: Colors.orange[300],
+                    color: Color(0xFFFDBC59),
                     width: 60,
                     height: 60,
                     icon: Icon(

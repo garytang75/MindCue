@@ -22,18 +22,20 @@ class _UserProfile extends State<UserProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Your Profile', style: TextStyle(color: Colors.grey[850]),),
+        title: Text('Hey $nickname!', style: TextStyle(color: Colors.grey[850]),),
         actions: [
           // button sign out
-          ElevatedButton(
+          TextButton(
             child: Row(children: <Widget>[
               Icon(
                 Icons.logout,
-                size: 26,
+                size: 24,
                 color: Colors.white,
               ),
-              Text('  Sign Out'),
+              Text('Sign Out', style: TextStyle(color: Colors.grey[850]),),
+
             ]),
+
             onPressed: () {
               AuthService().logOut();
               Navigator.push(
@@ -53,15 +55,101 @@ class _UserProfile extends State<UserProfile> {
       ),
       body: Stack(
         //shrinkWrap: true,
-        //padding: const EdgeInsets.all(20.0),
-        children: [
-          Text(
-            "Hi $nickname!",
-          ),
+        // padding: const EdgeInsets.all(20.0),
 
-          // version display, for now hard coded, later should be grabbed from github release version
-          // should be at the bottom of the screen
-          AppVersion(),
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      child: Row(children: <Widget>[
+                        Icon(
+                          Icons.announcement_rounded,
+                          size: 20,
+                          color: Colors.white,
+                        ),
+                        Text('  About', style: TextStyle(color: Colors.white),),
+                      ]),
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(new Color(0xFFb7c0c4) ),
+                      )
+                  ),
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      child: Row(children: <Widget>[
+                        Icon(
+                          Icons.account_circle_rounded,
+                          size: 20,
+                          color: Colors.white,
+                        ),
+                        Text('  Tell Your Friends', style: TextStyle(color: Colors.white),),
+                      ]),
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(new Color(0xFFb7c0c4) ),
+                      )
+                  ),
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      child: Row(children: <Widget>[
+                        Icon(
+                          Icons.article_rounded,
+                          size: 20,
+                          color: Colors.white,
+                        ),
+                        Text('  Terms & Conditions', style: TextStyle(color: Colors.white),),
+                      ]),
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(new Color(0xFFb7c0c4) ),
+                      )
+                  ),
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      child: Row(children: <Widget>[
+                        Icon(
+                          Icons.account_circle_rounded,
+                          size: 20,
+                          color: Colors.white,
+                        ),
+                        Text('  Privacy Policy', style: TextStyle(color: Colors.white),),
+                      ]),
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(new Color(0xFFb7c0c4) ),
+                      )
+                  ),
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      child: Row(children: <Widget>[
+                        Icon(
+                          Icons.account_circle_rounded,
+                          size: 20,
+                          color: Colors.white,
+                        ),
+                        Text('  Delete Account', style: TextStyle(color: Colors.white),),
+                      ]),
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(new Color(0xFFb7c0c4) ),
+                      )
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // version display, for now hard coded, later should be grabbed from github release versio
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: AppVersion(),
+            ),
         ],
       ),
     );

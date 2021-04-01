@@ -9,13 +9,9 @@ import './fetch_data.dart';
 
 class Journal {
 
-  void sendDairy(String text) async {
+  void sendDairy(String text, String dateTime) async {
     String userId = await Fetch().fetchUserId();
-    //get date
-    final DateTime now = DateTime.now();
-    final DateFormat formatter = DateFormat('MM-dd-yyyy');
-    final String formatted = formatter.format(now);
-
+    print(dateTime);
     try {
       RestOptions options = RestOptions(
           path: '/diaries/put_diary',
@@ -23,8 +19,9 @@ class Journal {
           Uint8List.fromList(
               '{'
                   '\'id\':\'$userId\','
-                  '\'date\':\'$formatted\','
-                  '\'text\':\'$text\''
+                  '\'date\':\'$dateTime\','
+                  '\'text\':\'$text\','
+                  '\'mood\':\'$text\','
                   '}'.codeUnits)
       );
       RestOperation restOperation = Amplify.API.put(

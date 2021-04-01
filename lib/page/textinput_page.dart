@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_auth2/widgets/mood_icons.dart';
+import 'package:intl/intl.dart';
 
 import '../fetch_data.dart';
 import '../journal_service.dart';
@@ -13,6 +14,15 @@ class TextInput extends StatefulWidget {
 
 class _TextInputState extends State<TextInput> {
   TextEditingController _journalController = TextEditingController();
+
+  moodIconAlert(BuildContext context) async{
+    return await showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return popupMoodIcons(context);
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,11 +45,17 @@ class _TextInputState extends State<TextInput> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) => popupMoodIcons(context),
-                    );
-                    // Journal().sendDairy(_journalController.text);
+                    // moodIconAlert(context);
+                    var formatDate = DateFormat('MM-dd-yyyy');
+                    var formatTime = DateFormat.jm();
+                    var date = formatDate.format(DateTime.now()); //date to display with journal
+                    var time = formatTime.format(DateTime.now()); //time to display with journal
+                    var dateTime = DateTime.now().toString(); //date and time for DB
+
+
+                    //TODO following function should be called after moodIconAlert result
+                    mood = "none";
+                    Journal().sendDairy(_journalController.text, dateTime);
                     print(_journalController.text);
                     _journalController.text = "";
                     Fluttertoast.showToast(

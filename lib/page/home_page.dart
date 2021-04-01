@@ -12,7 +12,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: new Icon(Icons.face, color: Colors.black),
+        // leading: new Icon(Icons.face, color: Colors.black),
+        leading: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Image.asset('assets/icon/main-icon.png', width: 35, height: 35 ),
+          ],
+        ),
         title: Text('Mood Chart', style: TextStyle(color: Colors.black)),
       ),
 

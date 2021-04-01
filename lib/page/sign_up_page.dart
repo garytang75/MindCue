@@ -118,14 +118,6 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
               ),
             ),
-            ///////////////////////////////
-            ///this button here just for testing
-            /// delete in actual app
-            // FlatButton(
-            //     child: Text('Logout'),
-            //     onPressed: AuthService().logOut,
-            //     color: Theme.of(context).accentColor)
-            ///////////////////////////////
           ],
         ),
       ),

@@ -12,7 +12,7 @@ class Answers extends StatelessWidget {
         //   , icon: Image.asset('assets/icon/mood-sad.png', width: 35, height: 35),
         // ),
         child: ElevatedButton(
-          child: Text(answerText),
+          child: Text(answerText, style: TextStyle(color: Colors.black),),
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(new Color(0xFFFDBC59)),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(

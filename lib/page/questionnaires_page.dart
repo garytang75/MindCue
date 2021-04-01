@@ -143,7 +143,7 @@ class _QuestionnairesState extends State<Questionnaires> {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Questionnaires'),
+          title: Text('Questionnaires', style: TextStyle(color: Colors.grey[850]),),
         ),
         body: _questionIndex < _questions.length
             ? Quiz(

@@ -17,7 +17,7 @@ class _TextInputState extends State<TextInput> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Text me'),
+          title: Text('Text me', style: TextStyle(color: Colors.grey[850]),),
         ),
 
         body: Padding(

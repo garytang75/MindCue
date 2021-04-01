@@ -22,7 +22,7 @@ class _UserProfile extends State<UserProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Your Profile'),
+        title: Text('Your Profile', style: TextStyle(color: Colors.grey[850]),),
         actions: [
           // button sign out
           ElevatedButton(

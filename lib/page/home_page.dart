@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
             Image.asset('assets/icon/main-icon.png', width: 35, height: 35 ),
           ],
         ),
-        title: Text('Mood Chart', style: TextStyle(color: Colors.black)),
+        title: Text('Mood Chart', style: TextStyle(color: Colors.grey[850]),),
       ),
 
       //Mock up for calendar and scrollable past journals

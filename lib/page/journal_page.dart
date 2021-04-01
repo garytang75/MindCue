@@ -9,7 +9,7 @@ class JournalPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Journal Page'),
+        title: Text('Journal Page', style: TextStyle(color: Colors.grey[850]),),
       ),
       body: ListView(
         children: [

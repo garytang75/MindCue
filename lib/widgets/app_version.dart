@@ -10,7 +10,7 @@ class AppVersion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.bottomRight,
+      alignment: Alignment.bottomCenter,
       child: Container(
         child: Text("version: 1.0.0"),
       ),

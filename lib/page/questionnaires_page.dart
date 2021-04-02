@@ -1,7 +1,17 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_auth2/models/quiz.dart';
 import 'package:flutter_auth2/models/results.dart';
 import 'package:flutter_auth2/page/home_page.dart';
+
+import 'package:amplify_api/amplify_api.dart';
+import 'package:amplify_flutter/amplify.dart';
+
+import '../fetch_data.dart';
+
+
 
 class Questionnaires extends StatefulWidget {
   @override
@@ -103,11 +113,15 @@ class _QuestionnairesState extends State<Questionnaires> {
   ];
   var _questionIndex = 0;
   var _totalScore = 0;
+  var _resultTip = "";
+  var num = 0;
+  List<int> scores = [];
 
   void _resetQuiz() {
     setState(() {
       _questionIndex = 0;
       _totalScore = 0;
+      _resultTip = "";
     });
   }
 
@@ -128,7 +142,51 @@ class _QuestionnairesState extends State<Questionnaires> {
       print('We have more questions!');
     } else {
       print('No more questions!');
+      _sendResult();
     }
+    scores.insert(num,score); //add answer values to the list
+    print("scores : " + scores[num].toString());
+    num++;
+  }
+
+  //function sends result to backend
+  void _sendResult() async{
+    String userId = await Fetch().fetchUserId();
+    var dateTime = DateTime.now().toString(); //date and time for DB
+    try {
+      RestOptions options = RestOptions(
+          path: '/test/add_user',
+          body:
+          Uint8List.fromList(
+              '{'
+                  '\'q1\':\'${scores[0]}\','
+                  '\'q2\':\'${scores[1]}\','
+                  '\'q3\':\'${scores[2]}\','
+                  '\'q4\':\'${scores[3]}\','
+                  '\'q5\':\'${scores[4]}\','
+                  '\'q6\':\'${scores[5]}\','
+                  '\'q7\':\'${scores[6]}\','
+                  '\'q8\':\'${scores[7]}\','
+                  '\'q9\':\'${scores[8]}\','
+                  '\'q10\':\'${scores[9]}\','
+                  '\'id\':\'$userId\','
+                  '\'date\':\'$dateTime\''
+                  '}'.codeUnits)
+      );
+      RestOperation restOperation = Amplify.API.post(
+          restOptions: options
+      );
+      RestResponse response = await restOperation.response;
+      print('POST call sendResult succeeded');
+      var finalres = json.decode(String.fromCharCodes(response.data));
+      // print(new String.fromCharCodes(response.data));
+
+      print(finalres['input']);
+      _resultTip = finalres['input'];
+    } on ApiException catch (e) {
+      print('POST call sendResult failed: $e');
+    }
+
   }
 
   @override
@@ -143,7 +201,7 @@ class _QuestionnairesState extends State<Questionnaires> {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Questionnaires', style: TextStyle(color: Colors.grey[850]),),
+          title: Text('Questionnaire', style: TextStyle(color: Colors.grey[850]),),
         ),
         body: _questionIndex < _questions.length
             ? Quiz(
@@ -152,10 +210,11 @@ class _QuestionnairesState extends State<Questionnaires> {
                 questions: _questions,
               )
             : Results(
-                _totalScore,
+                _resultTip,
                 _resetQuiz,
                 _goMain,
               ),
+
       ),
     );
   }

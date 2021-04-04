@@ -20,7 +20,7 @@ class BottomApp extends StatelessWidget {
       Align(
         alignment: Alignment.bottomCenter,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Column(
@@ -42,36 +42,36 @@ class BottomApp extends StatelessWidget {
                 ),
               ],
             ),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon: ImageIcon(AssetImage('assets/icon/bars.png')),
-                  onPressed: () {
-                    print('2');
-                  },
-                ),
-                Text(
-                  'stats',
-                  style: TextStyle(fontSize: 10),
-                )
-              ],
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon: ImageIcon(AssetImage('assets/icon/calendar.png')),
-                  onPressed: () {
-                    print('2');
-                  },
-                ),
-                Text(
-                  'calendar',
-                  style: TextStyle(fontSize: 10),
-                )
-              ],
-            ),
+            // Column(
+            //   mainAxisSize: MainAxisSize.min,
+            //   children: [
+            //     IconButton(
+            //       icon: ImageIcon(AssetImage('assets/icon/bars.png')),
+            //       onPressed: () {
+            //         print('2');
+            //       },
+            //     ),
+            //     Text(
+            //       'stats',
+            //       style: TextStyle(fontSize: 10),
+            //     )
+            //   ],
+            // ),
+            // Column(
+            //   mainAxisSize: MainAxisSize.min,
+            //   children: [
+            //     IconButton(
+            //       icon: ImageIcon(AssetImage('assets/icon/calendar.png')),
+            //       onPressed: () {
+            //         print('2');
+            //       },
+            //     ),
+            //     Text(
+            //       'calendar',
+            //       style: TextStyle(fontSize: 10),
+            //     )
+            //   ],
+            // ),
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth2/page/journal_input_local.dart';
 import 'package:flutter_auth2/page/journal_page.dart';
 import 'circular_button.dart';
 import '../page/textinput_page.dart';
@@ -149,7 +150,8 @@ class _CircularAnimationState extends State<CircularAnimation>
                       onClick: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => TextInput()),
+                          MaterialPageRoute(
+                              builder: (context) => JournalPage()),
                         );
                       },
                     ),

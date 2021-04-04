@@ -3,17 +3,21 @@ import 'package:flutter/foundation.dart';
 class JournalLocal {
   String createdAt;
   String journals;
+  String iconPath = '';
 
-  JournalLocal({@required this.createdAt, @required this.journals});
+  JournalLocal(
+      {@required this.createdAt, @required this.journals, this.iconPath});
 
   JournalLocal.fromMap(Map map)
       : this.createdAt = map['createdAt'],
-        this.journals = map['journals'];
+        this.journals = map['journals'],
+        this.iconPath = map['iconPath'];
 
   Map toMap() {
     return {
       'createdAt': this.createdAt,
       'journals': this.journals,
+      'iconPath': this.iconPath,
     };
   }
 }

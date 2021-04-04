@@ -11,8 +11,6 @@ import 'package:amplify_flutter/amplify.dart';
 
 import '../fetch_data.dart';
 
-
-
 class Questionnaires extends StatefulWidget {
   @override
   _QuestionnairesState createState() => _QuestionnairesState();
@@ -66,7 +64,8 @@ class _QuestionnairesState extends State<Questionnaires> {
       ],
     },
     {
-      'questionText': 'How often do you feel being so restless that it is hard to sit still?',
+      'questionText':
+          'How often do you feel being so restless that it is hard to sit still?',
       'answer': [
         {'text': 'Not at all', 'score': 4},
         {'text': 'Rare', 'score': 3},
@@ -75,7 +74,8 @@ class _QuestionnairesState extends State<Questionnaires> {
       ],
     },
     {
-      'questionText': 'How often do you feel being afraid, as if something awful might happen?',
+      'questionText':
+          'How often do you feel being afraid, as if something awful might happen?',
       'answer': [
         {'text': 'Not at all', 'score': 4},
         {'text': 'Rare', 'score': 3},
@@ -84,7 +84,8 @@ class _QuestionnairesState extends State<Questionnaires> {
       ],
     },
     {
-      'questionText': 'Are you able to control the important things in your life?',
+      'questionText':
+          'Are you able to control the important things in your life?',
       'answer': [
         {'text': 'Always', 'score': 4},
         {'text': 'Most of the time', 'score': 3},
@@ -144,21 +145,19 @@ class _QuestionnairesState extends State<Questionnaires> {
       print('No more questions!');
       _sendResult();
     }
-    scores.insert(num,score); //add answer values to the list
+    scores.insert(num, score); //add answer values to the list
     print("scores : " + scores[num].toString());
     num++;
   }
 
   //function sends result to backend
-  void _sendResult() async{
+  void _sendResult() async {
     String userId = await Fetch().fetchUserId();
     var dateTime = DateTime.now().toString(); //date and time for DB
     try {
       RestOptions options = RestOptions(
           path: '/test/add_user',
-          body:
-          Uint8List.fromList(
-              '{'
+          body: Uint8List.fromList('{'
                   '\'q1\':\'${scores[0]}\','
                   '\'q2\':\'${scores[1]}\','
                   '\'q3\':\'${scores[2]}\','
@@ -171,11 +170,9 @@ class _QuestionnairesState extends State<Questionnaires> {
                   '\'q10\':\'${scores[9]}\','
                   '\'id\':\'$userId\','
                   '\'date\':\'$dateTime\''
-                  '}'.codeUnits)
-      );
-      RestOperation restOperation = Amplify.API.post(
-          restOptions: options
-      );
+                  '}'
+              .codeUnits));
+      RestOperation restOperation = Amplify.API.post(restOptions: options);
       RestResponse response = await restOperation.response;
       print('POST call sendResult succeeded');
       var finalres = json.decode(String.fromCharCodes(response.data));
@@ -186,7 +183,6 @@ class _QuestionnairesState extends State<Questionnaires> {
     } on ApiException catch (e) {
       print('POST call sendResult failed: $e');
     }
-
   }
 
   @override
@@ -194,14 +190,17 @@ class _QuestionnairesState extends State<Questionnaires> {
     return MaterialApp(
       theme: ThemeData(
         appBarTheme: AppBarTheme(
-        color: Color(0xFFCEE2EE),
+          color: Color(0xFFCEE2EE),
         ),
         accentColor: Colors.black,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Questionnaire', style: TextStyle(color: Colors.grey[850]),),
+          title: Text(
+            'Questionnaire',
+            style: TextStyle(color: Colors.grey[850]),
+          ),
         ),
         body: _questionIndex < _questions.length
             ? Quiz(
@@ -214,7 +213,6 @@ class _QuestionnairesState extends State<Questionnaires> {
                 _resetQuiz,
                 _goMain,
               ),
-
       ),
     );
   }

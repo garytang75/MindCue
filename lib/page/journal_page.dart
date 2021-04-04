@@ -4,6 +4,8 @@ import 'package:flutter_auth2/models/journallocal.dart';
 import 'journal_input_local.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+List<JournalLocal> list = new List<JournalLocal>();
+
 /*
 3/28/2021 Gary- Moved the List of the Journal into Journal Page
 */
@@ -14,7 +16,6 @@ class JournalPage extends StatefulWidget {
 
 class _JournalPageState extends State<JournalPage>
     with TickerProviderStateMixin {
-  List<JournalLocal> list = new List<JournalLocal>();
   SharedPreferences sharedPreferences;
 
   void initState() {
@@ -75,6 +76,9 @@ class _JournalPageState extends State<JournalPage>
         child: Column(children: [
       ListTile(
         title: Text(item.createdAt),
+        onTap: () {
+          gotoEditeJournalView(item);
+        },
       ),
       SizedBox(
         width: 300,
@@ -100,7 +104,7 @@ class _JournalPageState extends State<JournalPage>
     saveData();
   }
 
-  void gotoEditeJournalView(item) {
+  void gotoEditeJournalView(JournalLocal item) {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
       return JournalInputLocal(item: item);
     })).then((journals) {
@@ -110,8 +114,9 @@ class _JournalPageState extends State<JournalPage>
     });
   }
 
-  void editJournal(JournalLocal item, String journals) {
-    item.journals = journals;
+  void editJournal(JournalLocal item, JournalLocal journals) {
+    item.journals = journals.journals;
+    item.createdAt = item.createdAt;
     saveData();
   }
 

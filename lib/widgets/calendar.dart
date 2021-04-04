@@ -24,7 +24,9 @@ class _CalendarState extends State<Calendar> {
   @override
   Widget build(BuildContext context) {
     return TableCalendar(
+      initialCalendarFormat: CalendarFormat.twoWeeks,
       calendarController: _calendarController,
+      availableGestures: AvailableGestures.horizontalSwipe,
     );
   }
 }

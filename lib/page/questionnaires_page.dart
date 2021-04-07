@@ -179,7 +179,7 @@ class QuestionnairesState extends State<Questionnaires> {
       var finalres = json.decode(String.fromCharCodes(response.data));
       // print(new String.fromCharCodes(response.data));
 
-      _resultTip = finalres['input'];
+      _resultTip = finalres["text"];
     } on ApiException catch (e) {
       print('POST call sendResult failed: $e');
     }

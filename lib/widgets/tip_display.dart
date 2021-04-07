@@ -7,17 +7,41 @@ class TipDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Center(
       child: new Container(
+        width: 350,
+        margin: EdgeInsets.all(3),
+        padding: EdgeInsets.all(2),
         child: Row(
           children: <Widget>[
-            FutureBuilder<String>(
-              future: QuestionnairesState().sendResult(),
-              builder: (context, snapshot) {
-                if(snapshot.hasData) {
-                  return Text(snapshot.data);
-                }
-                return Text("no tips yet");
-              },
-            )
+            Flexible(
+                // height: 320,
+                child:FutureBuilder<String>(
+                  future: QuestionnairesState().sendResult(),
+                  builder: (context, snapshot) {
+                    if(snapshot.hasData) {
+                      return Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Tip to boost your mental health:", style: TextStyle(fontSize: 20, height: 1.5, color: Color(0xFFe3a600), fontWeight: FontWeight.bold)),
+                          Text("Based on your quiz result", style: TextStyle(fontSize: 14, height: 1, color: Colors.grey)),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 8.0, 0, 8.0),
+                            child: Text(snapshot.data, style: TextStyle(fontSize: 16, height: 1.6)),
+                          )
+                        ],
+                      );
+                    }
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Want some advice?", style: TextStyle(fontSize: 18)),
+                        Text("Take a quiz!", style: TextStyle(fontSize: 20, height: 2, color: Color(0xFFe3a600), fontWeight: FontWeight.bold))
+                      ],
+                    );
+                  },
+                )
+            ),
           ],
         ),
       ),

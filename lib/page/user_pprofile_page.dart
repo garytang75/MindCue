@@ -83,11 +83,11 @@ class _UserProfile extends State<UserProfile> {
                   child: ElevatedButton(
                       child: Row(children: <Widget>[
                         Icon(
-                          Icons.account_circle_rounded,
+                          Icons.question_answer_rounded,
                           size: 20,
                           color: Colors.white,
                         ),
-                        Text('  Tell Your Friends', style: TextStyle(color: Colors.white),),
+                        Text('  FAQ', style: TextStyle(color: Colors.white),),
                       ]),
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(new Color(0xFFb7c0c4) ),
@@ -131,7 +131,7 @@ class _UserProfile extends State<UserProfile> {
                   child: ElevatedButton(
                       child: Row(children: <Widget>[
                         Icon(
-                          Icons.account_circle_rounded,
+                          Icons.delete_forever,
                           size: 20,
                           color: Colors.white,
                         ),

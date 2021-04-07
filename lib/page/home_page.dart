@@ -3,6 +3,7 @@ import 'package:flutter_auth2/widgets/bottom_app_bar.dart';
 import 'package:flutter_auth2/widgets/circular_animation.dart';
 import 'package:flutter_auth2/widgets/calendar.dart';
 import 'package:flutter_auth2/models/journallocal.dart';
+import 'package:flutter_auth2/widgets/tip_display.dart';
 
 class HomePage extends StatelessWidget {
   final VoidCallback shouldLogOut;
@@ -32,6 +33,8 @@ class HomePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: []),
 
           Calendar(),
+          //Tip
+          TipDisplay(),
           //Bottom App Bar
           BottomApp(),
           //CircularAnimation Widget

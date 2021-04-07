@@ -11,12 +11,15 @@ import 'package:amplify_flutter/amplify.dart';
 
 import '../fetch_data.dart';
 
+//list in global to prevent overwriting when
+//call function sendResult from another widget
+List<int> scores = [];
 class Questionnaires extends StatefulWidget {
   @override
-  _QuestionnairesState createState() => _QuestionnairesState();
+  QuestionnairesState createState() => QuestionnairesState();
 }
 
-class _QuestionnairesState extends State<Questionnaires> {
+class QuestionnairesState extends State<Questionnaires> {
   final _questions = const [
     {
       'questionText': 'How are you feeling today?',
@@ -116,7 +119,7 @@ class _QuestionnairesState extends State<Questionnaires> {
   var _totalScore = 0;
   var _resultTip = "";
   var num = 0;
-  List<int> scores = [];
+
 
   void _resetQuiz() {
     setState(() {
@@ -140,25 +143,23 @@ class _QuestionnairesState extends State<Questionnaires> {
     });
     print(_questionIndex);
     if (_questionIndex < _questions.length) {
-      print('We have more questions!');
+      // print('We have more questions!');
     } else {
-      print('No more questions!');
-      _sendResult();
+      // print('No more questions!');
     }
     scores.insert(num, score); //add answer values to the list
-    print("scores : " + scores[num].toString());
     num++;
   }
 
   //function sends result to backend
-  void _sendResult() async {
+  Future<String> sendResult() async {
     String userId = await Fetch().fetchUserId();
     var dateTime = DateTime.now().toString(); //date and time for DB
     try {
       RestOptions options = RestOptions(
           path: '/test/add_user',
           body: Uint8List.fromList('{'
-                  '\'q1\':\'${scores[0]}\','
+                  '\'q1\':\'"${scores[0]}"\','
                   '\'q2\':\'${scores[1]}\','
                   '\'q3\':\'${scores[2]}\','
                   '\'q4\':\'${scores[3]}\','
@@ -178,11 +179,11 @@ class _QuestionnairesState extends State<Questionnaires> {
       var finalres = json.decode(String.fromCharCodes(response.data));
       // print(new String.fromCharCodes(response.data));
 
-      print(finalres['input']);
-      _resultTip = finalres['input'];
+      _resultTip = finalres["text"];
     } on ApiException catch (e) {
       print('POST call sendResult failed: $e');
     }
+    return _resultTip;
   }
 
   @override

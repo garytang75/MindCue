@@ -3,6 +3,7 @@ import 'package:flutter_auth2/widgets/bottom_app_bar.dart';
 import 'package:flutter_auth2/widgets/circular_animation.dart';
 import 'package:flutter_auth2/widgets/calendar.dart';
 import 'package:flutter_auth2/models/journallocal.dart';
+import 'package:flutter_auth2/widgets/journal_feed_back.dart';
 import 'package:flutter_auth2/widgets/tip_display.dart';
 
 class HomePage extends StatelessWidget {
@@ -35,13 +36,71 @@ class HomePage extends StatelessWidget {
           Calendar(),
           //Tip
           TipDisplay(),
+
+          //JournalFeedback(),
           //Bottom App Bar
+
           BottomApp(),
           //CircularAnimation Widget
           CircularAnimation(),
-
         ],
       )),
     );
+  }
+
+  Widget journalFeedBack() {
+    return Align(
+      alignment: Alignment(0, -0.3),
+      child: Container(
+          margin: const EdgeInsets.all(25),
+          // decoration:
+          //     BoxDecoration(border: Border.all(color: Color(0xFFCEE2EE))),
+          width: double.infinity,
+          height: 100,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Based on your journal entry',
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              ),
+              Row(
+                children: [
+                  Text('You felt',
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+                  SizedBox(
+                    height: 80,
+                  ),
+                  Text(
+                    ' Stressed',
+                    style: TextStyle(
+                        fontSize: 25,
+                        color: Color(0xFFe3a600),
+                        fontWeight: FontWeight.bold),
+                  )
+                ],
+              )
+            ],
+          )),
+    );
+  }
+
+  Widget tipTable() {
+    return Align(
+        alignment: Alignment(0, 0.8),
+        child: Container(
+            margin: const EdgeInsets.all(10.0),
+            width: double.infinity,
+            height: 300,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Let\'s try these:'),
+                Text('Tips'),
+              ],
+            )));
   }
 }

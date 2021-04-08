@@ -1,21 +1,29 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth2/models/journallocal.dart';
+import 'package:flutter_auth2/page/home_page.dart';
 import 'journal_input_local.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-List<JournalLocal> list = new List<JournalLocal>();
+import '../widgets/bottom_app_bar.dart';
+import '../widgets/circular_button.dart';
 
 /*
 3/28/2021 Gary- Moved the List of the Journal into Journal Page
 */
 class JournalPage extends StatefulWidget {
+  final JournalLocal recieve;
+  String get text {
+    return recieve.journals;
+  }
+
+  JournalPage({Key key, this.recieve}) : super(key: key);
   @override
-  _JournalPageState createState() => _JournalPageState();
+  JournalPageState createState() => JournalPageState();
 }
 
-class _JournalPageState extends State<JournalPage>
+class JournalPageState extends State<JournalPage>
     with TickerProviderStateMixin {
+  List<JournalLocal> localjournallist = new List<JournalLocal>();
   SharedPreferences sharedPreferences;
 
   void initState() {
@@ -30,6 +38,9 @@ class _JournalPageState extends State<JournalPage>
 
   @override
   Widget build(BuildContext context) {
+    if (widget.recieve != null) {
+      addJournal(widget.recieve);
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -37,11 +48,11 @@ class _JournalPageState extends State<JournalPage>
           style: TextStyle(color: Colors.grey[850]),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () => goToJournalLocal(),
-      ),
-      body: list.isEmpty ? emptyList() : buildListView(),
+      // floatingActionButton: FloatingActionButton(
+      //   child: Icon(Icons.add),
+      //   onPressed: () => goToJournalLocal(),
+      // ),
+      body: localjournallist.isEmpty ? emptyList() : buildListView(),
     );
   }
 
@@ -50,15 +61,70 @@ class _JournalPageState extends State<JournalPage>
 // }
 
   Widget emptyList() {
-    return Center(child: Text('No Journals'));
+    return Stack(children: [
+      Center(child: Text('No Journals')),
+      Align(
+        alignment: Alignment.bottomCenter,
+        child: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+              color: Color(0xFFCEE2EE), shape: BoxShape.rectangle),
+          height: 55,
+        ),
+      ),
+      Align(
+        alignment: Alignment(0, 0.92),
+        child: CircularButton(
+            color: Color(0xFFFDBC59),
+            width: 60,
+            height: 60,
+            icon: Icon(
+              Icons.home_outlined,
+              size: 30,
+              color: Colors.black,
+            ),
+            onClick: () {
+              Navigator.popUntil(context, ModalRoute.withName('/home'));
+            }),
+      ),
+    ]);
+    //Bottom App Bar
   }
 
   Widget buildListView() {
-    return ListView.builder(
-        itemCount: list.length,
-        itemBuilder: (BuildContext context, int index) {
-          return buildItem(list[index], index);
-        });
+    return Stack(
+      children: [
+        ListView.builder(
+            itemCount: localjournallist.length,
+            itemBuilder: (BuildContext context, int index) {
+              return buildItem(localjournallist[index], index);
+            }),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+                color: Color(0xFFCEE2EE), shape: BoxShape.rectangle),
+            height: 55,
+          ),
+        ),
+        Align(
+          alignment: Alignment(0, 0.92),
+          child: CircularButton(
+              color: Color(0xFFFDBC59),
+              width: 60,
+              height: 60,
+              icon: Icon(
+                Icons.home_outlined,
+                size: 30,
+                color: Colors.black,
+              ),
+              onClick: () {
+                Navigator.popUntil(context, ModalRoute.withName('/home'));
+              }),
+        ),
+      ],
+    );
   }
 
   Widget buildItem(JournalLocal item, index) {
@@ -75,6 +141,7 @@ class _JournalPageState extends State<JournalPage>
     return Card(
         child: Column(children: [
       ListTile(
+        leading: moodWidget(item),
         title: Text(item.createdAt),
         onTap: () {
           gotoEditeJournalView(item);
@@ -100,8 +167,12 @@ class _JournalPageState extends State<JournalPage>
   }
 
   void addJournal(JournalLocal item) {
-    list.insert(0, item);
+    localjournallist.insert(0, item);
     saveData();
+  }
+
+  void recieveJournal(JournalLocal item) {
+    addJournal(item);
   }
 
   void gotoEditeJournalView(JournalLocal item) {
@@ -121,14 +192,14 @@ class _JournalPageState extends State<JournalPage>
   }
 
   void removeJournal(JournalLocal item) {
-    list.remove(item);
+    localjournallist.remove(item);
     saveData();
   }
 
   void loadData() {
     List<String> listString = sharedPreferences.getStringList('list');
     if (listString != null) {
-      list = listString
+      localjournallist = listString
           .map((item) => JournalLocal.fromMap(json.decode(item)))
           .toList();
       setState(() {});
@@ -137,8 +208,21 @@ class _JournalPageState extends State<JournalPage>
 
   void saveData() {
     List<String> stringList =
-        list.map((item) => json.encode(item.toMap())).toList();
+        localjournallist.map((item) => json.encode(item.toMap())).toList();
     sharedPreferences.setStringList('list', stringList);
+  }
+
+  Widget moodWidget(JournalLocal item) {
+    if (item.iconPath == '') {
+      return null;
+    } else {
+      return Container(child: Image.asset(item.iconPath));
+    }
+  }
+
+  String get getPath {
+    final myObj = localjournallist[0];
+    return myObj.iconPath;
   }
 }
 

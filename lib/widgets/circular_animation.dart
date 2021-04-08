@@ -6,6 +6,7 @@ import '../page/textinput_page.dart';
 import 'package:flutter_auth2/main.dart';
 import '../page/questionnaires_page.dart';
 import 'image_button.dart';
+import '../page/journal_page.dart';
 
 class CircularAnimation extends StatefulWidget {
   @override
@@ -86,25 +87,25 @@ class _CircularAnimationState extends State<CircularAnimation>
                     width: 200,
                   ),
                 ),
-                Transform.translate(
-                  offset: Offset.fromDirection(getRadiansFromDegree(270),
-                      degTwoTranslationAnimation.value * 100),
-                  child: Transform(
-                    transform: Matrix4.rotationZ(
-                        getRadiansFromDegree(rotationAnimation.value))
-                      ..scale(degTwoTranslationAnimation.value),
-                    alignment: Alignment.center,
-                    child: CircularButton(
-                      color: Color(0xFF8FC2E1),
-                      width: 60,
-                      height: 60,
-                      icon: Icon(Icons.mic_none_sharp, color: Colors.white),
-                      onClick: () {
-                        print('voice input');
-                      },
-                    ),
-                  ),
-                ),
+                // Transform.translate(
+                //   offset: Offset.fromDirection(getRadiansFromDegree(270),
+                //       degTwoTranslationAnimation.value * 100),
+                //   child: Transform(
+                //     transform: Matrix4.rotationZ(
+                //         getRadiansFromDegree(rotationAnimation.value))
+                //       ..scale(degTwoTranslationAnimation.value),
+                //     alignment: Alignment.center,
+                //     child: CircularButton(
+                //       color: Color(0xFF8FC2E1),
+                //       width: 60,
+                //       height: 60,
+                //       icon: Icon(Icons.mic_none_sharp, color: Colors.white),
+                //       onClick: () {
+                //         print('voice input');
+                //       },
+                //     ),
+                //   ),
+                // ),
                 Transform.translate(
                   offset: Offset.fromDirection(getRadiansFromDegree(200),
                       degThreeTranslationAnimation.value * 100),
@@ -151,7 +152,7 @@ class _CircularAnimationState extends State<CircularAnimation>
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => JournalPage()),
+                              builder: (context) => JournalInputLocal()),
                         );
                       },
                     ),

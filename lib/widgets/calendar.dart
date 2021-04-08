@@ -27,6 +27,7 @@ class _CalendarState extends State<Calendar> {
       initialCalendarFormat: CalendarFormat.twoWeeks,
       calendarController: _calendarController,
       availableGestures: AvailableGestures.horizontalSwipe,
+      initialSelectedDay: DateTime.now(),
     );
   }
 }

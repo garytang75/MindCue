@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth2/widgets/bottom_app_bar.dart';
+import 'package:flutter_auth2/widgets/circular_button.dart';
 
 var resultT = "";
+
 class Results extends StatelessWidget {
   final String resultTip;
   final Function resetHandler;
@@ -9,9 +11,10 @@ class Results extends StatelessWidget {
 
   Results(this.resultTip, this.resetHandler, this.goMain);
 
-  String get resultPhrase{
+  String get resultPhrase {
     String resultText;
-    resultText = 'You are wonderful! \n Keep it up and think positive! \n '; //'Would you like to get a tip based on your answers?\n'
+    resultText =
+        'You are wonderful! \n Keep it up and think positive! \n '; //'Would you like to get a tip based on your answers?\n'
     // print("resultTip: " + resultTip);
     return resultText + resultTip;
   }
@@ -19,42 +22,61 @@ class Results extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Stack(
-          children: [
-        Text(
-        resultPhrase,
-          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-          textAlign: TextAlign.center,
-        ),
+      child: Stack(
+        children: [
+          Align(
+            alignment: Alignment(0, -.5),
+            child: Text(
+              resultPhrase,
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
+          ),
 
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+          Center(
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Text('Did something wrong? Try the questionaires again.'),
               FlatButton(
                 padding: const EdgeInsets.all(18.0),
                 child: Text('Do the questionaires again'),
                 textColor: Colors.blue,
                 onPressed: resetHandler,
               ),
-              FlatButton(
-                child: Text('Go back to the home page'),
-                textColor: Colors.blue,
-                onPressed: goMain,
-              ),
-              ]),
+              // FlatButton(
+              //   child: Text('Go back to the home page'),
+              //   textColor: Colors.blue,
+              //   onPressed: goMain,
+              // ),
+            ]),
+          ),
 
-            //Bottom App Bar
-            BottomApp(),
-           //TODO add circular button in center(just like home page) with home icon that redirects to home
-          ],
-        ),
+          //Bottom App Bar
+          BottomApp(),
+          Align(
+            alignment: Alignment(0, 0.92),
+            child: CircularButton(
+              color: Color(0xFFFDBC59),
+              width: 60,
+              height: 60,
+              icon: Icon(
+                Icons.home_outlined,
+                size: 30,
+                color: Colors.black,
+              ),
+              onClick: goMain,
+            ),
+          ),
+          //TODO add circular button in center(just like home page) with home icon that redirects to home
+        ],
+      ),
       // ],
-        // FlatButton(
-        //     child: Text('Talk to me'),
-        //     textColor: Colors.blue,
-        //     onPressed: () {
-        //       print('text widgets');
-        //     })
+      // FlatButton(
+      //     child: Text('Talk to me'),
+      //     textColor: Colors.blue,
+      //     onPressed: () {
+      //       print('text widgets');
+      //     })
       // ],
     );
   }

@@ -80,62 +80,64 @@ class _MyAppState extends State<MyApp> {
 
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'MindCue App',
-      theme: ThemeData(
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-          appBarTheme: AppBarTheme(
-            color: Color(0xFFCEE2EE),
-          )),
-      home: StreamBuilder<AuthState>(
-          stream: _authService.authStateController.stream,
-          builder: (context, snapshot) {
-            // If the stream has data
-            if (snapshot.hasData) {
-              // print("AuthFlowStatus.session: ");
-              // print(AuthService.checkAuthStatus());
-              return Navigator(
-                pages: [
-                  // if (snapshot.data.authFlowStatus == AuthFlowStatus.session)
-                  //   MaterialPage(
-                  //       child: HomePage(shouldLogOut: _authService.logOut))
-                  // Show Login Page
-                  if (snapshot.data.authFlowStatus == AuthFlowStatus.login)
-                    MaterialPage(
-                        child: LoginPage(
-                            didProvideCredentials:
-                                _authService.loginWithCredentials,
-                            shouldShowSignUp: _authService.showSignUp)),
+        title: 'MindCue App',
+        theme: ThemeData(
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+            appBarTheme: AppBarTheme(
+              color: Color(0xFFCEE2EE),
+            )),
+        home: StreamBuilder<AuthState>(
+            stream: _authService.authStateController.stream,
+            builder: (context, snapshot) {
+              // If the stream has data
+              if (snapshot.hasData) {
+                // print("AuthFlowStatus.session: ");
+                // print(AuthService.checkAuthStatus());
+                return Navigator(
+                  pages: [
+                    // if (snapshot.data.authFlowStatus == AuthFlowStatus.session)
+                    //   MaterialPage(
+                    //       child: HomePage(shouldLogOut: _authService.logOut))
+                    // Show Login Page
+                    if (snapshot.data.authFlowStatus == AuthFlowStatus.login)
+                      MaterialPage(
+                          child: LoginPage(
+                              didProvideCredentials:
+                                  _authService.loginWithCredentials,
+                              shouldShowSignUp: _authService.showSignUp)),
 
-                  // Show Sign Up Page
-                  if (snapshot.data.authFlowStatus == AuthFlowStatus.signUp)
-                    MaterialPage(
-                        child: SignUpPage(
-                            didProvideCredentials:
-                                _authService.signUpWithCredentials,
-                            shouldShowLogin: _authService.showLogin)),
+                    // Show Sign Up Page
+                    if (snapshot.data.authFlowStatus == AuthFlowStatus.signUp)
+                      MaterialPage(
+                          child: SignUpPage(
+                              didProvideCredentials:
+                                  _authService.signUpWithCredentials,
+                              shouldShowLogin: _authService.showLogin)),
 
-                  // Show Verification Code Page
-                  if (snapshot.data.authFlowStatus ==
-                      AuthFlowStatus.verification)
-                    MaterialPage(
-                        child: VerificationPage(
-                            didProvideVerificationCode:
-                                _authService.verifyCode)),
+                    // Show Verification Code Page
+                    if (snapshot.data.authFlowStatus ==
+                        AuthFlowStatus.verification)
+                      MaterialPage(
+                          child: VerificationPage(
+                              didProvideVerificationCode:
+                                  _authService.verifyCode)),
 
-                  if (snapshot.data.authFlowStatus == AuthFlowStatus.session)
-                    MaterialPage(
-                        child: HomePage(shouldLogOut: _authService.logOut))
-                ],
-                onPopPage: (route, result) => route.didPop(result),
-              );
-            } else {
-              // If the stream doesn't have data, a CircularProgressIndicator is displayed.
-              return Container(
-                alignment: Alignment.center,
-                child: CircularProgressIndicator(),
-              );
-            }
-          }),
-    );
+                    if (snapshot.data.authFlowStatus == AuthFlowStatus.session)
+                      MaterialPage(
+                          child: HomePage(shouldLogOut: _authService.logOut))
+                  ],
+                  onPopPage: (route, result) => route.didPop(result),
+                );
+              } else {
+                // If the stream doesn't have data, a CircularProgressIndicator is displayed.
+                return Container(
+                  alignment: Alignment.center,
+                  child: CircularProgressIndicator(),
+                );
+              }
+            }),
+        routes: <String, WidgetBuilder>{
+          '/home': (BuildContext context) => HomePage(),
+        });
   }
 }

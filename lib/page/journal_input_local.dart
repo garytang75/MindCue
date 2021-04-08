@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_auth2/models/journallocal.dart';
 import 'package:flutter_auth2/widgets/mood_icons.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/intl.dart';
+import 'journal_page.dart';
 
 class JournalInputLocal extends StatefulWidget {
   final JournalLocal item;
@@ -49,7 +51,7 @@ class _JournalInputLocalState extends State<JournalInputLocal> {
               maxLines: null,
               controller: mytextController,
               autofocus: true,
-              onSubmitted: (value) => submit(),
+              onSubmitted: (value) => submitFunction(),
               decoration: InputDecoration(labelText: 'Talk to me'),
             ),
             SizedBox(
@@ -68,8 +70,7 @@ class _JournalInputLocalState extends State<JournalInputLocal> {
                         bottomLeft: Radius.circular(10.0),
                         topRight: Radius.circular(10.0))),
                 onPressed: () {
-                  moodIconAlert(context);
-                  submit();
+                  widget.item != null ? edit() : submitFunction();
                   Fluttertoast.showToast(
                       msg: "Your feeling is recorded",
                       toastLength: Toast.LENGTH_SHORT,
@@ -85,10 +86,30 @@ class _JournalInputLocalState extends State<JournalInputLocal> {
     );
   }
 
-  void submit() {
+  void submit() async {
+    await moodIconAlert(context);
+    String time = DateFormat.yMd().add_jm().format(DateTime.now());
+    Navigator.of(context).pop(JournalLocal(
+        journals: mytextController.text, createdAt: time, iconPath: path));
+  }
+
+  void edit() {
     String time = DateTime.now().toString();
     Navigator.of(context).pop(JournalLocal(
         journals: mytextController.text, createdAt: time, iconPath: path));
-    print(path);
+  }
+
+  void submitFunction() async {
+    await moodIconAlert(context);
+    String time = DateFormat.yMd().add_jm().format(DateTime.now());
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => JournalPage(
+              recieve: JournalLocal(
+                  createdAt: time,
+                  iconPath: path,
+                  journals: mytextController.text)),
+        ));
   }
 }

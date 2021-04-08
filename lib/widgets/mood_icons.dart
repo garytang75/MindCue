@@ -79,6 +79,7 @@ Widget popupMoodIcons(BuildContext context) {
     actions: <Widget>[
       new ElevatedButton(
           onPressed: () {
+            path = '';
             Navigator.of(context).pop();
           },
           child: const Text('Skip'),

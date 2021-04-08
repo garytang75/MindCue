@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
         title: Text(
-          'Mood Chart',
+          'Home',
           style: TextStyle(color: Colors.grey[850]),
         ),
       ),

@@ -141,14 +141,14 @@ class JournalPageState extends State<JournalPage>
     return Card(
         child: Column(children: [
       ListTile(
-        leading: moodWidget(item),
-        title: Text(item.createdAt),
+        leading: Container(width: 28, height: 28, child: moodWidget(item)),
+        title: Text(item.createdAt, style: TextStyle(color: Colors.grey, fontSize: 14)),
         onTap: () {
           gotoEditeJournalView(item);
         },
       ),
       SizedBox(
-        width: 300,
+        width: 280,
         height: 150,
         child:
             Text(item.journals, maxLines: 4, overflow: TextOverflow.ellipsis),

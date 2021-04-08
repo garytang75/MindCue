@@ -57,18 +57,15 @@ class _JournalInputLocalState extends State<JournalInputLocal> {
             SizedBox(
               height: 14.0,
             ),
-            RaisedButton(
-                color: Theme.of(context).primaryColor,
-                child: Text(
-                  'Save',
-                  style: TextStyle(
-                      color: Theme.of(context).primaryTextTheme.title.color),
-                ),
-                elevation: 3.0,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10.0),
-                        topRight: Radius.circular(10.0))),
+            ElevatedButton(
+                child: const Text('Save'),
+                style: ButtonStyle(
+                    backgroundColor:
+                    MaterialStateProperty.all<Color>(new Color(0xFFFDBC59)),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                        ))),
                 onPressed: () {
                   widget.item != null ? edit() : submitFunction();
                   Fluttertoast.showToast(

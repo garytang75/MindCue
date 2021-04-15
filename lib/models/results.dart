@@ -8,13 +8,21 @@ class Results extends StatelessWidget {
   final String resultTip;
   final Function resetHandler;
   final Function goMain;
+  final int resultScore;
 
-  Results(this.resultTip, this.resetHandler, this.goMain);
+  Results(this.resultTip, this.resultScore, this.resetHandler, this.goMain);
 
   String get resultPhrase {
     String resultText;
-    resultText =
-        'You are wonderful! \n Keep it up and think positive! \n '; //'Would you like to get a tip based on your answers?\n'
+    if (resultScore <= 15) {
+      resultText = 'You seems exhausted and sad, let\'s talk to me';
+    } else if (resultScore <= 25) {
+      resultText = 'You seems ok, think positive!';
+    } else {
+      resultText = 'You are wonderful! \n Keep it up and think positive! \n ';
+    }
+    // resultText =
+    //     'You are wonderful! \n Keep it up and think positive! \n '; //'Would you like to get a tip based on your answers?\n'
     // print("resultTip: " + resultTip);
     return resultText + resultTip;
   }

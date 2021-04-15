@@ -22,7 +22,10 @@ class _UserProfile extends State<UserProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hey $nickname!', style: TextStyle(color: Colors.grey[850]),),
+        title: Text(
+          'Hey $nickname!',
+          style: TextStyle(color: Colors.grey[850]),
+        ),
         actions: [
           // button sign out
           TextButton(
@@ -32,10 +35,11 @@ class _UserProfile extends State<UserProfile> {
                 size: 24,
                 color: Colors.white,
               ),
-              Text('Sign Out', style: TextStyle(color: Colors.grey[850]),),
-
+              Text(
+                'Sign Out',
+                style: TextStyle(color: Colors.grey[850]),
+              ),
             ]),
-
             onPressed: () {
               AuthService().logOut();
               Navigator.push(
@@ -71,12 +75,27 @@ class _UserProfile extends State<UserProfile> {
                           size: 20,
                           color: Colors.white,
                         ),
-                        Text('  About', style: TextStyle(color: Colors.white),),
+                        Text(
+                          '  About',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ]),
                       style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(new Color(0xFFb7c0c4) ),
-                      )
-                  ),
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            new Color(0xFFFDBC59)),
+                      ),
+                      onPressed: () {
+                        showAboutDialog(
+                            context: context,
+                            applicationVersion: '1.0.0',
+                            applicationIcon: Image.asset(
+                              'assets/icon/mindcue.png',
+                            ),
+                            children: [
+                              Text(
+                                  'MindCue helps tracking mental well-being and reduce stress factors, develop self-awareness and healthy habits.'),
+                            ]);
+                      }),
                 ),
                 SizedBox(
                   width: double.infinity,
@@ -87,12 +106,15 @@ class _UserProfile extends State<UserProfile> {
                           size: 20,
                           color: Colors.white,
                         ),
-                        Text('  FAQ', style: TextStyle(color: Colors.white),),
+                        Text(
+                          '  FAQ',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ]),
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(new Color(0xFFb7c0c4) ),
-                      )
-                  ),
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            new Color(0xFFb7c0c4)),
+                      )),
                 ),
                 SizedBox(
                   width: double.infinity,
@@ -103,12 +125,15 @@ class _UserProfile extends State<UserProfile> {
                           size: 20,
                           color: Colors.white,
                         ),
-                        Text('  Terms & Conditions', style: TextStyle(color: Colors.white),),
+                        Text(
+                          '  Terms & Conditions',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ]),
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(new Color(0xFFb7c0c4) ),
-                      )
-                  ),
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            new Color(0xFFb7c0c4)),
+                      )),
                 ),
                 SizedBox(
                   width: double.infinity,
@@ -119,12 +144,15 @@ class _UserProfile extends State<UserProfile> {
                           size: 20,
                           color: Colors.white,
                         ),
-                        Text('  Privacy Policy', style: TextStyle(color: Colors.white),),
+                        Text(
+                          '  Privacy Policy',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ]),
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(new Color(0xFFb7c0c4) ),
-                      )
-                  ),
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            new Color(0xFFb7c0c4)),
+                      )),
                 ),
                 SizedBox(
                   width: double.infinity,
@@ -135,21 +163,24 @@ class _UserProfile extends State<UserProfile> {
                           size: 20,
                           color: Colors.white,
                         ),
-                        Text('  Delete Account', style: TextStyle(color: Colors.white),),
+                        Text(
+                          '  Delete Account',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ]),
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(new Color(0xFFb7c0c4) ),
-                      )
-                  ),
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            new Color(0xFFb7c0c4)),
+                      )),
                 ),
               ],
             ),
           ),
           // version display, for now hard coded, later should be grabbed from github release versio
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: AppVersion(),
-            ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: AppVersion(),
+          ),
         ],
       ),
     );

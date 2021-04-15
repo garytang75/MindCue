@@ -40,6 +40,7 @@ class JournalPageState extends State<JournalPage>
   Widget build(BuildContext context) {
     if (widget.recieve != null) {
       addJournal(widget.recieve);
+      Navigator.of(context).pop();
     }
     return Scaffold(
       appBar: AppBar(
@@ -84,7 +85,8 @@ class JournalPageState extends State<JournalPage>
               color: Colors.black,
             ),
             onClick: () {
-              Navigator.popUntil(context, ModalRoute.withName('/home'));
+              // Navigator.popUntil(context, ModalRoute.withName('/home'));
+              Navigator.pop(context);
             }),
       ),
     ]);
@@ -120,7 +122,7 @@ class JournalPageState extends State<JournalPage>
                 color: Colors.black,
               ),
               onClick: () {
-                Navigator.popUntil(context, ModalRoute.withName('/home'));
+                Navigator.pop(context);
               }),
         ),
       ],
@@ -142,7 +144,8 @@ class JournalPageState extends State<JournalPage>
         child: Column(children: [
       ListTile(
         leading: Container(width: 28, height: 28, child: moodWidget(item)),
-        title: Text(item.createdAt, style: TextStyle(color: Colors.grey, fontSize: 14)),
+        title: Text(item.createdAt,
+            style: TextStyle(color: Colors.grey, fontSize: 14)),
         onTap: () {
           gotoEditeJournalView(item);
         },

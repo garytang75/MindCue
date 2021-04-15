@@ -4,6 +4,7 @@ import 'package:flutter_auth2/widgets/mood_icons.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'journal_page.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class JournalInputLocal extends StatefulWidget {
   final JournalLocal item;
@@ -51,7 +52,7 @@ class _JournalInputLocalState extends State<JournalInputLocal> {
               maxLines: null,
               controller: mytextController,
               autofocus: true,
-              onSubmitted: (value) => submitFunction(),
+              // onSubmitted: (value) => submitFunction(),
               decoration: InputDecoration(labelText: 'Talk to me'),
             ),
             SizedBox(
@@ -61,11 +62,11 @@ class _JournalInputLocalState extends State<JournalInputLocal> {
                 child: const Text('Save'),
                 style: ButtonStyle(
                     backgroundColor:
-                    MaterialStateProperty.all<Color>(new Color(0xFFFDBC59)),
+                        MaterialStateProperty.all<Color>(new Color(0xFFFDBC59)),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(18.0),
-                        ))),
+                      borderRadius: BorderRadius.circular(18.0),
+                    ))),
                 onPressed: () {
                   widget.item != null ? edit() : submitFunction();
                   Fluttertoast.showToast(

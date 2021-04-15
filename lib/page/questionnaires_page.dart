@@ -14,6 +14,7 @@ import '../fetch_data.dart';
 //list in global to prevent overwriting when
 //call function sendResult from another widget
 List<int> scores = [];
+
 class Questionnaires extends StatefulWidget {
   @override
   QuestionnairesState createState() => QuestionnairesState();
@@ -120,7 +121,6 @@ class QuestionnairesState extends State<Questionnaires> {
   var _resultTip = "";
   var num = 0;
 
-
   void _resetQuiz() {
     setState(() {
       _questionIndex = 0;
@@ -149,6 +149,8 @@ class QuestionnairesState extends State<Questionnaires> {
     }
     scores.insert(num, score); //add answer values to the list
     num++;
+
+    print(_totalScore);
   }
 
   //function sends result to backend
@@ -211,6 +213,7 @@ class QuestionnairesState extends State<Questionnaires> {
               )
             : Results(
                 _resultTip,
+                _totalScore,
                 _resetQuiz,
                 _goMain,
               ),

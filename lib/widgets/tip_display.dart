@@ -5,7 +5,7 @@ class TipDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment(0, 0.5),
+      alignment: Alignment(0, 0.3),
       child: new Container(
         height: 300,
         width: 350,

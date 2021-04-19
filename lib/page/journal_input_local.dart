@@ -3,6 +3,7 @@ import 'package:flutter_auth2/models/journallocal.dart';
 import 'package:flutter_auth2/widgets/mood_icons.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
+import '../journal_service.dart';
 import 'journal_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -109,5 +110,6 @@ class _JournalInputLocalState extends State<JournalInputLocal> {
                   iconPath: path,
                   journals: mytextController.text)),
         ));
+    Journal().sendDairy(mytextController.text, time, path);
   }
 }

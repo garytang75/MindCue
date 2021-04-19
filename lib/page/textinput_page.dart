@@ -59,7 +59,7 @@ class _TextInputState extends State<TextInput> {
 
                       //TODO following function should be called after moodIconAlert result
                       mood = "none";
-                      Journal().sendDairy(_journalController.text, dateTime);
+                      // Journal().sendDairy(_journalController.text, dateTime);
                       print(_journalController.text);
                       _journalController.text = "";
                       Fluttertoast.showToast(

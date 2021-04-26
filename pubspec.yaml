@@ -35,9 +35,11 @@ dependencies:
   table_calendar: ^2.3.3
 
   fluttertoast: ^8.0.3
-  shared_preferences: ^2.0.5
-
-  
+  shared_preferences: ^0.5.4+9
+  audioplayers: ^0.17.0
+  flutter_audio_recorder: ^0.5.5
+  path_provider: ^1.6.24
+  stop_watch_timer: ^1.1.0+1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

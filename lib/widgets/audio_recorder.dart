@@ -171,13 +171,17 @@ class _RecorderViewState extends State<RecorderView> {
       _recordIcon = Icons.stop;
       _recordText = 'Recording in progress';
     } else {
-      Fluttertoast.showToast(
-        msg: "Please allow recording in settings",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        fontSize: 12.0,
-      );
+      // Fluttertoast.showToast(
+      //   msg: "Please allow recording in settings",
+      //   toastLength: Toast.LENGTH_SHORT,
+      //   gravity: ToastGravity.BOTTOM,
+      //   timeInSecForIosWeb: 1,
+      //   fontSize: 12.0,
+      // );
+      Scaffold.of(context).hideCurrentSnackBar();
+      Scaffold.of(context).showSnackBar(SnackBar(
+        content: Text('Please allow recording from settings.'),
+      ));
     }
   }
 }

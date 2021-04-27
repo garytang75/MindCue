@@ -73,18 +73,6 @@ class _RecordListViewState extends State<RecordListView> {
     );
   }
 
-  // Widget buildItem(String item, index) {
-  //   return Dismissible(
-  //     key: Key('${item.hashCode}'),
-  //     background: Container(color: Colors.red[700]),
-  //     onDismissed: (direction) => removeRecord(item),
-  //     direction: DismissDirection.startToEnd,
-  //     // child: buildCard(item, index),
-  //   );
-  // }
-
-
-
   Future<void> _onPlay({@required String filePath, @required int index}) async {
     AudioPlayer audioPlayer = AudioPlayer();
 
@@ -130,8 +118,4 @@ class _RecordListViewState extends State<RecordListView> {
 
     return ('$year/$month/$day');
   }
-
-  // void removeRecord(record) {
-  //   widget.records.remove(record);
-  // }
 }

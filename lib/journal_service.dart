@@ -42,7 +42,7 @@ class Journal {
           Uint8List.fromList(
               '{'
                   '\'id\':\'$userId\','
-                  '\'date\':\'$dateTime\''
+                  '\'sdate\':\'$dateTime\''
                   '}'.codeUnits)
       );
       RestOperation restOperation = Amplify.API.delete(

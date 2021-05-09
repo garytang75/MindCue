@@ -2,19 +2,20 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import '../audio_service.dart';
 import '../widgets/audio_list.dart';
 import '../widgets/audio_recorder.dart';
 
 class RecorderHomeView extends StatefulWidget {
-
   @override
-  _RecorderHomeViewState createState() => _RecorderHomeViewState();
+  RecorderHomeViewState createState() => RecorderHomeViewState();
 }
 
-class _RecorderHomeViewState extends State<RecorderHomeView> {
+class RecorderHomeViewState extends State<RecorderHomeView> {
   Directory appDirectory;
   Stream<FileSystemEntity> fileStream;
   List<String> records;
+  String path;
 
   @override
   void initState() {
@@ -72,10 +73,19 @@ class _RecorderHomeViewState extends State<RecorderHomeView> {
     records.clear();
     appDirectory.list().listen((onData) {
       records.add(onData.path);
+      path = onData.path;
     }).onDone(() {
       records.sort();
       records = records.reversed.toList();
       setState(() {});
+      print(path);
+      // Journal().uploadFile(path);
     });
   }
+  void deleteLocaly({@required String file}) {
+    Directory appDirec = Directory(file);
+    appDirec.delete(recursive: true);
+    print(appDirec);
+      }
+
 }

@@ -1,11 +1,13 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_auth2/page/audio_input_page.dart';
 
 class RecordListView extends StatefulWidget {
+  final Function deleteLocaly;
   final List<String> records;
   const RecordListView({
     Key key,
-    this.records,
+    this.records, this.deleteLocaly,
   }) : super(key: key);
 
   @override
@@ -13,6 +15,7 @@ class RecordListView extends StatefulWidget {
 }
 
 class _RecordListViewState extends State<RecordListView> {
+  AudioPlayer audioPlayer = AudioPlayer();
   int _totalDuration;
   int _currentDuration;
   double _completedPercentage = 0.0;
@@ -26,7 +29,8 @@ class _RecordListViewState extends State<RecordListView> {
       shrinkWrap: true,
       reverse: true,
       itemBuilder: (BuildContext context, int i) {
-        return ExpansionTile(
+        return
+        ExpansionTile(
           title: Text('New recoding ${widget.records.length - i}'),
           subtitle: Text(
               _getDateFromFilePath(filePath: widget.records.elementAt(i)),
@@ -55,15 +59,43 @@ class _RecordListViewState extends State<RecordListView> {
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
                     value: _selectedIndex == i ? _completedPercentage : 0,
                   ),
-                  IconButton(
-                    icon: _selectedIndex == i
-                        ? _isPlaying
-                        ? Icon(Icons.pause)
-                        : Icon(Icons.play_arrow)
-                        : Icon(Icons.play_arrow),
-                    onPressed: () => _onPlay(
-                        filePath: widget.records.elementAt(i), index: i),
-                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.play_arrow),
+                          onPressed: () => _onPlay(
+                              filePath: widget.records.elementAt(i), index: i),
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.pause),
+                          onPressed: () => _onPause(),
+                        ),
+                        IconButton(
+                          icon:
+                          // _selectedIndex == i
+                          // ? _isPlaying
+                          // ? Icon(Icons.play_arrow)
+                          Icon(Icons.stop),
+                          // : Icon(Icons.play_arrow),
+                          onPressed: () => _onStop(),
+                        ),
+                        IconButton(
+                          icon:
+                          // _selectedIndex == i
+                          // ? _isPlaying
+                          // ? Icon(Icons.play_arrow)
+                          Icon(Icons.delete),
+                          color: Colors.redAccent,
+                          // : Icon(Icons.play_arrow),
+                          onPressed: () =>
+                              _deleteRecoriding(filePath: widget.records.elementAt(i))
+                          // widget.deleteLocaly(widget.records.elementAt(i)),
+                          // Fluttertoast.showToast(msg: "File Deleted")
+                          // },
+                        ),
+                        ]
+                  )
                 ],
               ),
             ),
@@ -74,9 +106,8 @@ class _RecordListViewState extends State<RecordListView> {
   }
 
   Future<void> _onPlay({@required String filePath, @required int index}) async {
-    AudioPlayer audioPlayer = AudioPlayer();
-
     if (!_isPlaying) {
+
       audioPlayer.play(filePath, isLocal: true);
       setState(() {
         _selectedIndex = index;
@@ -85,6 +116,7 @@ class _RecordListViewState extends State<RecordListView> {
       });
 
       audioPlayer.onPlayerCompletion.listen((_) {
+        audioPlayer.stop();
         setState(() {
           _isPlaying = false;
           _completedPercentage = 0.0;
@@ -101,9 +133,31 @@ class _RecordListViewState extends State<RecordListView> {
           _currentDuration = duration.inMicroseconds;
           _completedPercentage =
               _currentDuration.toDouble() / _totalDuration.toDouble();
+
         });
       });
     }
+  }
+  Future<void> _onPause() async {
+
+    if (_isPlaying) {
+      audioPlayer.pause();
+      setState(() {
+        _isPlaying = false;
+      });
+
+    }
+  }
+
+  Future<void> _onStop({@required String filePath, @required int index}) async {
+
+    audioPlayer.stop();
+    setState(() {
+      _selectedIndex = index;
+      _completedPercentage = 0.0;
+      _isPlaying = false;
+    });
+
   }
 
   String _getDateFromFilePath({@required String filePath}) {
@@ -117,5 +171,15 @@ class _RecordListViewState extends State<RecordListView> {
     int day = recordedDate.day;
 
     return ('$year/$month/$day');
+  }
+
+  Future<void> _deleteRecoriding({@required String filePath}) async {
+    audioPlayer.stop();
+    setState(() {
+      widget.records.remove(filePath);
+      _isPlaying = false;
+    });
+    RecorderHomeViewState().deleteLocaly(file: filePath);
+
   }
 }

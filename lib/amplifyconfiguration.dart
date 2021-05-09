@@ -50,5 +50,13 @@ const amplifyconfig = ''' {
                     }   
             }
         }
+    },
+    "storage": {
+        "plugins": {
+            "awsS3StoragePlugin": {
+                "bucket": "dev-mc-dev-lambda-storage",
+                "region": "us-east-1"
+        }
     }
+  }
 }''';

@@ -161,7 +161,6 @@ class _RecorderViewState extends State<RecorderView> {
   }
 
 
-
   Future<void> _recordVoice() async {
     if (await FlutterAudioRecorder.hasPermissions) {
       await _initRecorder();

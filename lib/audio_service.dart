@@ -6,9 +6,12 @@ import 'package:dio/dio.dart';
 import 'dart:io';
 
 class Journal {
-  //get signed url from s3 and send audio file to s3
+
+  //function sends request to get presigned url from s3 and then upload audio file to s3
   void uploadFile(filePath) async {
     try {
+
+      //get presigned url
       RestOptions options = RestOptions(
           path: '/aud/get_url',
           apiName: 'mc-api'
@@ -16,17 +19,20 @@ class Journal {
       RestOperation restOperation = Amplify.API.get(
           restOptions: options
       );
-      //get response and parse it
+
+      //parse response
       RestResponse response = await restOperation.response;
       var finalres = json.decode(String.fromCharCodes(response.data));
       var data = finalres['fields'];
       var key = data['key'];
       var uploadUrl = "https://dev-mc-audio-storage.s3.amazonaws.com/";
       print('GET call getSignedUrl succeeded');
+
       //rename audio file
       var dir = path.dirname(filePath);
       var newPath = path.join(dir, key );
       File f = await File(filePath).copy(newPath);
+
       //form request data
       var formData = FormData.fromMap({
         'key': key,
@@ -36,6 +42,7 @@ class Journal {
         'signature': data['signature'],
         'file': f.path
       });
+
       //send audio upload POST request
       Dio dio = new Dio();
       Response s3response = await dio.post(uploadUrl, data: formData);

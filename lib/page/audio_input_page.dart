@@ -68,7 +68,7 @@ class RecorderHomeViewState extends State<RecorderHomeView> {
     );
   }
 
-  //function calls when recording is completed
+  //when recording is completed
   _onRecordComplete() {
     records.clear();
     appDirectory.list().listen((onData) {
@@ -82,6 +82,8 @@ class RecorderHomeViewState extends State<RecorderHomeView> {
       Journal().uploadFile(path);
     });
   }
+
+  //delete file locally
   void deleteLocaly({@required String file}) {
     Directory appDirec = Directory(file);
     appDirec.delete(recursive: true);

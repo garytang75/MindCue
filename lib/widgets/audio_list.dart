@@ -72,27 +72,14 @@ class _RecordListViewState extends State<RecordListView> {
                           onPressed: () => _onPause(),
                         ),
                         IconButton(
-                          icon:
-                          // _selectedIndex == i
-                          // ? _isPlaying
-                          // ? Icon(Icons.play_arrow)
-                          Icon(Icons.stop),
-                          // : Icon(Icons.play_arrow),
+                          icon: Icon(Icons.stop),
                           onPressed: () => _onStop(),
                         ),
                         IconButton(
-                          icon:
-                          // _selectedIndex == i
-                          // ? _isPlaying
-                          // ? Icon(Icons.play_arrow)
-                          Icon(Icons.delete),
+                          icon: Icon(Icons.delete),
                           color: Colors.redAccent,
-                          // : Icon(Icons.play_arrow),
-                          onPressed: () =>
-                              _deleteRecoriding(filePath: widget.records.elementAt(i))
-                          // widget.deleteLocaly(widget.records.elementAt(i)),
-                          // Fluttertoast.showToast(msg: "File Deleted")
-                          // },
+                          onPressed: () => _deleteRecoriding(
+                              filePath: widget.records.elementAt(i))
                         ),
                         ]
                   )
@@ -105,9 +92,9 @@ class _RecordListViewState extends State<RecordListView> {
     );
   }
 
+  //play audio player
   Future<void> _onPlay({@required String filePath, @required int index}) async {
     if (!_isPlaying) {
-
       audioPlayer.play(filePath, isLocal: true);
       setState(() {
         _selectedIndex = index;
@@ -133,11 +120,12 @@ class _RecordListViewState extends State<RecordListView> {
           _currentDuration = duration.inMicroseconds;
           _completedPercentage =
               _currentDuration.toDouble() / _totalDuration.toDouble();
-
         });
       });
     }
   }
+
+  //pause audio player
   Future<void> _onPause() async {
 
     if (_isPlaying) {
@@ -149,8 +137,8 @@ class _RecordListViewState extends State<RecordListView> {
     }
   }
 
+  //stop audio player
   Future<void> _onStop({@required String filePath, @required int index}) async {
-
     audioPlayer.stop();
     setState(() {
       _selectedIndex = index;
@@ -160,6 +148,7 @@ class _RecordListViewState extends State<RecordListView> {
 
   }
 
+  //get recording date
   String _getDateFromFilePath({@required String filePath}) {
     String fromEpoch = filePath.substring(
         filePath.lastIndexOf('/') + 1, filePath.lastIndexOf('.'));
@@ -173,6 +162,7 @@ class _RecordListViewState extends State<RecordListView> {
     return ('$year/$month/$day');
   }
 
+  //remove recording from list and delete locally
   Future<void> _deleteRecoriding({@required String filePath}) async {
     audioPlayer.stop();
     setState(() {

@@ -79,7 +79,7 @@ class RecorderHomeViewState extends State<RecorderHomeView> {
       records = records.reversed.toList();
       setState(() {});
       print(path);
-      // Journal().uploadFile(path);
+      Journal().uploadFile(path);
     });
   }
   void deleteLocaly({@required String file}) {

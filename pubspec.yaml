@@ -26,6 +26,8 @@ dependencies:
   amplify_flutter: '<1.0.0'
   amplify_auth_cognito: '<1.0.0'
   amplify_api: '<1.0.0'
+  http: '^0.13.1'
+  dio: '^4.0.0'
 
   flutter_login: ^1.0.14
   rflutter_alert: ^2.0.2

@@ -1,17 +1,16 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_auth2/widgets/circular_button.dart';
 import 'package:path_provider/path_provider.dart';
-import '../audio_service.dart';
 import '../widgets/audio_list.dart';
-import '../widgets/audio_recorder.dart';
 
-class RecorderHomeView extends StatefulWidget {
+class AudioJournal extends StatefulWidget {
   @override
-  RecorderHomeViewState createState() => RecorderHomeViewState();
+  AudioJournalState createState() => AudioJournalState();
 }
 
-class RecorderHomeViewState extends State<RecorderHomeView> {
+class AudioJournalState extends State<AudioJournal> {
   Directory appDirectory;
   Stream<FileSystemEntity> fileStream;
   List<String> records;
@@ -26,12 +25,7 @@ class RecorderHomeViewState extends State<RecorderHomeView> {
       appDirectory.list().listen((onData) {
         records.add(onData.path);
       }).onDone(() {
-        while(records.length > 6){
-          records.removeLast();
-        }
-
-        // records = records.reversed.toList();
-
+        records = records.reversed.toList();
         setState(() {});
       });
     });
@@ -46,49 +40,51 @@ class RecorderHomeViewState extends State<RecorderHomeView> {
     super.dispose();
   }
 
+///TODO make records list scrollable
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return
+      Scaffold(
       appBar: AppBar(
         title: Text("Audio Journal",
             style: TextStyle(
                 color: Colors.black)),
       ),
-      body: Column(
+      body: Stack(
         children: [
           Expanded(
-            flex: 2,
+            // flex: 2,
             child: RecordListView(
               records: records,
             ),
           ),
-          Expanded(
-            flex: 1,
-            child: RecorderView(
-              onSaved: _onRecordComplete,
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: Color(0xFFCEE2EE), shape: BoxShape.rectangle),
+              height: 55,
             ),
+          ),
+          Align(
+            alignment: Alignment(0, 0.92),
+            child: CircularButton(
+                color: Color(0xFFFDBC59),
+                width: 60,
+                height: 60,
+                icon: Icon(
+                  Icons.home_outlined,
+                  size: 30,
+                  color: Colors.black,
+                ),
+                onClick: () {
+                  Navigator.pop(context);
+                }),
           ),
         ],
       ),
     );
-  }
-
-  //when recording is completed
-  _onRecordComplete() {
-    records.clear();
-    appDirectory.list().listen((onData) {
-      records.add(onData.path);
-      path = onData.path;
-    }).onDone(() {
-      records.sort();
-      // records = records.reversed.toList();
-      while(records.length > 6){
-        records.removeLast();
-      }
-      setState(() {});
-      print(path);
-      Journal().uploadFile(path);
-    });
 
   }
 
@@ -97,6 +93,6 @@ class RecorderHomeViewState extends State<RecorderHomeView> {
     Directory appDirec = Directory(file);
     appDirec.delete(recursive: true);
     print(appDirec);
-      }
+  }
 
 }

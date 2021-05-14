@@ -13,8 +13,7 @@ class Journal {
 
       //get presigned url
       RestOptions options = RestOptions(
-          path: '/aud/get_url',
-          apiName: 'mc-api'
+          path: '/aud/get_url'
       );
       RestOperation restOperation = Amplify.API.get(
           restOptions: options

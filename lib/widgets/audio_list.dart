@@ -26,12 +26,12 @@ class _RecordListViewState extends State<RecordListView> {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: widget.records.length,
-      shrinkWrap: true,
-      reverse: true,
+      // shrinkWrap: true,
+      // reverse: true,
       itemBuilder: (BuildContext context, int i) {
         return
         ExpansionTile(
-          title: Text('New recoding ${widget.records.length - i}'),
+          title: Text('Recoding ${widget.records.length - i}'),
           subtitle: Text(
               _getDateFromFilePath(filePath: widget.records.elementAt(i)),
               style: TextStyle(

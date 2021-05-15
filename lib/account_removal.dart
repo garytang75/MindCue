@@ -8,15 +8,16 @@ class AccountDeletion {
     final String user = await Fetch().fetchUserId();
     try {
       RestOptions options = RestOptions(
-          path: '/account/delete',
+          path: '/delete_account/delete_account',
           body:
           Uint8List.fromList(
               '{'
                   '\'id\':\'$user\''
-              '}'.codeUnits)
+                  '}'.codeUnits)
       );
       RestOperation restOp = Amplify.API.put(restOptions: options);
       RestResponse response = await restOp.response;
+      print('PUT call sendDairy succeeded');
     } on ApiException catch (err) {
       print('Could not delete account: $err');
     }

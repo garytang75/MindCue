@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth2/page/journal_page.dart';
 import 'package:flutter_auth2/page/user_pprofile_page.dart';
+import 'package:flutter_auth2/page/stats_page.dart';
 import '../fetch_data.dart';
 import 'circular_button.dart';
 
@@ -98,6 +99,25 @@ class BottomApp extends StatelessWidget {
                   'more',
                   style: TextStyle(fontSize: 10),
                 )
+              ],
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  iconSize: 20,
+                  icon: ImageIcon(AssetImage('assets/icon/book.png')),
+                  onPressed: () => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => StatsPage()),
+                    )
+                  },
+                ),
+                Text(
+                  'stats',
+                  style: TextStyle(fontSize: 10),
+                ),
               ],
             ),
           ],

@@ -6,7 +6,7 @@ import './fetch_data.dart';
 import 'dart:convert';
 
 class Stats {
-  Future<Map> getAllEmotions() async {
+  Future<Map<String, List>> getAllEmotions() async {
     String userId = await Fetch().fetchUserId();
     String res;
     List resList;
@@ -24,13 +24,13 @@ class Stats {
     //}
 
     for (var i = 0; i < resList.length; i++) {
-      ret[resList[i]["Date"]] = {
-        "HappinessLevel": resList[i]["HappinessLevel"],
-        "SadnessLevel": resList[i]["SadnessLevel"],
-        "AngrinessLevel": resList[i]["AngrinessLevel"],
-        "SurpriseLevel": resList[i]["SurpriseLevel"],
-        "FearLevel": resList[i]["FearLevel"]
-      };
+      ret[resList[i]["Date"]] = [
+        double.parse(resList[i]["HappinessLevel"]),
+        double.parse(resList[i]["SadnessLevel"]),
+        double.parse(resList[i]["AngrinessLevel"]),
+        double.parse(resList[i]["FearLevel"]),
+        double.parse(resList[i]["SurpriseLevel"])
+      ];
     }
 
     return ret;

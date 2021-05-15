@@ -26,11 +26,15 @@ class _EmotionOverTimeDisplay extends State<EmotionOverTimeDisplay> {
   //Method for generating the series data used in the Cartesian chart
   List<LineSeries<_GraphData, DateTime>> _getLineSeries(data) {
     //_GraphData(date, emotion1, emotion2, emotion3, emotion4)
-    final List<_GraphData> graphData = <_GraphData>[
-      _GraphData(DateTime(2020, 1, 1), 2, 3, 4, 5, 6),
-      _GraphData(DateTime(2020, 1, 2), 3, 4, 5, 6, 7),
-      _GraphData(DateTime(2020, 1, 3), 4, 5, 6, 7, 8)
-    ];
+    List<_GraphData> graphData;
+    //<_GraphData>[
+    //  _GraphData(DateTime(2020, 1, 1), 2, 3, 4, 5, 6),
+    //  _GraphData(DateTime(2020, 1, 2), 3, 4, 5, 6, 7),
+    //  _GraphData(DateTime(2020, 1, 3), 4, 5, 6, 7, 8)
+    //];
+
+    data.forEach((k, v) =>
+        {graphData.add(_GraphData(DateTime(k), v[0], v[1], v[2], v[3], v[4]))});
 
     return <LineSeries<_GraphData, DateTime>>[
       LineSeries<_GraphData, DateTime>(
@@ -97,7 +101,7 @@ class _EmotionOverTimeDisplay extends State<EmotionOverTimeDisplay> {
     );
   }
 
-  Future _collectData() async {
+  Future<Map<String, List>> _collectData() {
     return Stats().getAllEmotions();
   }
 
@@ -106,7 +110,7 @@ class _EmotionOverTimeDisplay extends State<EmotionOverTimeDisplay> {
         child: Container(
             child: Row(children: <Widget>[
       Flexible(
-          child: FutureBuilder<SfCartesianChart>(
+          child: FutureBuilder(
               future: _collectData(),
               builder: (context, snapshot) {
                 List<Widget> children;

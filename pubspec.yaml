@@ -76,6 +76,7 @@ flutter:
     # main icon home screen
     - assets/icon/main-icon.png
     # other icons
+    - assets/icon/stats-icon.png
     - assets/icon/bars.png
     - assets/icon/book.png
     - assets/icon/playlist.png

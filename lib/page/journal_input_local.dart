@@ -100,7 +100,7 @@ class _JournalInputLocalState extends State<JournalInputLocal> {
   void submitFunction() async {
     await moodIconAlert(context);
     String time = DateFormat.yMd().add_jm().format(DateTime.now());
-    Journal().sendDairy(mytextController.text, time, path);
+    // Journal().sendDairy(mytextController.text, time, path);
     Navigator.push(
         context,
         MaterialPageRoute(
@@ -110,6 +110,6 @@ class _JournalInputLocalState extends State<JournalInputLocal> {
                   iconPath: path,
                   journals: mytextController.text)),
         ));
-    textJournal().sendDairy(mytextController.text, time, path);
+    TextJournal().sendDairy(mytextController.text, time, path);
   }
 }

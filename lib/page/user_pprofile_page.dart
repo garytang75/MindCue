@@ -275,9 +275,9 @@ class _UserProfile extends State<UserProfile> {
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: SizedBox(
-                    height: 400,
-                    width: 400,
-                    child: Image.asset("assets/icon/MentalHealth.jpg"),
+                    // height: 400,
+                    // width: 400,
+                    child: Image.asset("assets/icon/MentalHealth.jpg", height: 400, width: 400, fit: BoxFit.cover),
                   ),
                 ),
               ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_auth2/widgets/app_version.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../account_removal.dart';
 import '../auth_service.dart';
 import '../main.dart';
 
@@ -170,8 +171,23 @@ class _UserProfile extends State<UserProfile> {
                       ]),
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
-                            new Color(0xFFb7c0c4)),
-                      )),
+                            new Color(0xFFF19679)),
+                      ),
+                      onPressed: () {
+                        AccountDeletion().deleteUser();
+                        AuthService().logOut();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => MyApp()),
+                        );
+                        Fluttertoast.showToast(
+                          msg: "Account will be deleted",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          fontSize: 12.0,
+                        );
+                      }),
                 ),
               ],
             ),

@@ -47,8 +47,16 @@ const amplifyconfig = ''' {
                      "endpoint": "$Endpoint",
                      "region": "us-east-1",
                      "authorizationType": "AMAZON_COGNITO_USER_POOLS"
-                    }   
+                    }    
             }
         }
+    },
+    "storage": {
+        "plugins": {
+            "awsS3StoragePlugin": {
+                "bucket": "dev-mc-dev-lambda-storage",
+                "region": "us-east-1"
+        }
     }
+  }
 }''';

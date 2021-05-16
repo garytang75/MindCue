@@ -146,6 +146,7 @@ class _RecordListViewState extends State<RecordListView> {
       _isPlaying = false;
     });
 
+
   }
 
   //get recording date

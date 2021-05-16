@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_auth2/widgets/bottom_app_bar.dart';
 import 'package:flutter_auth2/widgets/circular_animation.dart';
 import 'package:flutter_auth2/widgets/calendar.dart';
-import 'package:flutter_auth2/models/journallocal.dart';
-import 'package:flutter_auth2/widgets/journal_feed_back.dart';
 import 'package:flutter_auth2/widgets/tip_display.dart';
+import '../journal_service.dart';
 
 class HomePage extends StatelessWidget {
   final VoidCallback shouldLogOut;
@@ -31,9 +30,42 @@ class HomePage extends StatelessWidget {
           child: Stack(
         children: [
           Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: []),
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 40.0, bottom: 100.0),
+              child: FutureBuilder<String>(
+                  future: textJournal().getSentiment(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Sentiment of your last journal:", style: TextStyle(
+                                fontSize: 20,
+                                height: 4,
+                                color: Color(0xFF87bdde),
+                                fontWeight: FontWeight.bold)),
+                            Text(snapshot.data, style: TextStyle(fontSize: 16)),
+                          ]
+                      );
+                    } return Column(
+                      children: [
+                        Text("No sentiment data yet", style: TextStyle(
+                            fontSize: 20,
+                            height: 4,
+                            color: Color(0xFF87bdde),
+                            fontWeight: FontWeight.bold)),
+                        Text("create new journal entry for analysis", style: TextStyle(fontSize: 15)),
+                      ],
+                    );
+                  }),
+            ),
+          ]),
 
           Calendar(),
+
           //Tip
           TipDisplay(),
 

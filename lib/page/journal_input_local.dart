@@ -110,6 +110,6 @@ class _JournalInputLocalState extends State<JournalInputLocal> {
                   iconPath: path,
                   journals: mytextController.text)),
         ));
-    Journal().sendDairy(mytextController.text, time, path);
+    textJournal().sendDairy(mytextController.text, time, path);
   }
 }

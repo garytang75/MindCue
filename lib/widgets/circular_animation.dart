@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth2/page/audio_input_page.dart';
 import 'package:flutter_auth2/page/journal_input_local.dart';
-import 'package:flutter_auth2/page/journal_page.dart';
 import 'circular_button.dart';
-import '../page/textinput_page.dart';
-import 'package:flutter_auth2/main.dart';
 import '../page/questionnaires_page.dart';
-import 'image_button.dart';
-import '../page/journal_page.dart';
 
 class CircularAnimation extends StatefulWidget {
   @override

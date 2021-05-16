@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_auth2/widgets/bottom_app_bar.dart';
 import 'package:flutter_auth2/widgets/circular_animation.dart';
 import 'package:flutter_auth2/widgets/calendar.dart';
+
 import 'package:flutter_auth2/widgets/tip_display.dart';
 import '../journal_service.dart';
 
@@ -29,9 +30,7 @@ class HomePage extends StatelessWidget {
       body: Container(
           child: Stack(
         children: [
-          Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
+          Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
             Padding(
               padding: const EdgeInsets.only(left: 40.0, bottom: 100.0),
               child: FutureBuilder<String>(
@@ -42,22 +41,25 @@ class HomePage extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Sentiment of your last journal:", style: TextStyle(
+                            Text("Sentiment of your last journal:",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    height: 4,
+                                    color: Color(0xFF87bdde),
+                                    fontWeight: FontWeight.bold)),
+                            Text(snapshot.data, style: TextStyle(fontSize: 16)),
+                          ]);
+                    }
+                    return Column(
+                      children: [
+                        Text("No sentiment data yet",
+                            style: TextStyle(
                                 fontSize: 20,
                                 height: 4,
                                 color: Color(0xFF87bdde),
                                 fontWeight: FontWeight.bold)),
-                            Text(snapshot.data, style: TextStyle(fontSize: 16)),
-                          ]
-                      );
-                    } return Column(
-                      children: [
-                        Text("No sentiment data yet", style: TextStyle(
-                            fontSize: 20,
-                            height: 4,
-                            color: Color(0xFF87bdde),
-                            fontWeight: FontWeight.bold)),
-                        Text("create new journal entry for analysis", style: TextStyle(fontSize: 15)),
+                        Text("create new journal entry for analysis",
+                            style: TextStyle(fontSize: 15)),
                       ],
                     );
                   }),

@@ -3,9 +3,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_auth2/widgets/mood_icons.dart';
 import 'package:intl/intl.dart';
 
-import '../fetch_data.dart';
-import '../journal_service.dart';
-
 class TextInput extends StatefulWidget {
   @override
   _TextInputState createState() => _TextInputState();

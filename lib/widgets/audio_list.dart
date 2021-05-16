@@ -145,6 +145,8 @@ class _RecordListViewState extends State<RecordListView> {
       _completedPercentage = 0.0;
       _isPlaying = false;
     });
+
+
   }
 
   //get recording date

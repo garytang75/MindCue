@@ -5,7 +5,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import '../journal_service.dart';
 import 'journal_page.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class JournalInputLocal extends StatefulWidget {
   final JournalLocal item;
@@ -101,6 +100,7 @@ class _JournalInputLocalState extends State<JournalInputLocal> {
   void submitFunction() async {
     await moodIconAlert(context);
     String time = DateFormat.yMd().add_jm().format(DateTime.now());
+    Journal().sendDairy(mytextController.text, time, path);
     Navigator.push(
         context,
         MaterialPageRoute(
@@ -110,6 +110,6 @@ class _JournalInputLocalState extends State<JournalInputLocal> {
                   iconPath: path,
                   journals: mytextController.text)),
         ));
-    Journal().sendDairy(mytextController.text, time, path);
+    textJournal().sendDairy(mytextController.text, time, path);
   }
 }

@@ -1,11 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth2/models/journallocal.dart';
-import 'package:flutter_auth2/page/home_page.dart';
 import 'journal_input_local.dart';
 import '../journal_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../widgets/bottom_app_bar.dart';
 import '../widgets/circular_button.dart';
 
 /*
@@ -193,7 +191,7 @@ class JournalPageState extends State<JournalPage>
     item.journals = journals.journals;
     item.createdAt = item.createdAt;
     saveData();
-    Journal().sendDairy(item.journals, item.createdAt, item.iconPath);
+    textJournal().sendDairy(item.journals, item.createdAt, item.iconPath);
   }
 
   void removeJournal(JournalLocal item) {

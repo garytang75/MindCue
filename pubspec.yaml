@@ -37,17 +37,15 @@ dependencies:
   table_calendar: ^2.3.3
 
   fluttertoast: ^8.0.3
+  
   syncfusion_flutter_charts: any
 
-  
-  flutter_audio_recorder: ^0.5.5
   shared_preferences: ^0.5.4+9
   audioplayers: ^0.17.0
-  
+  flutter_audio_recorder: ^0.5.5
   path_provider: ^1.6.24
   stop_watch_timer: ^1.1.0+1
-  
-  
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
@@ -80,6 +78,7 @@ flutter:
     - assets/icon/bars.png
     - assets/icon/book.png
     - assets/icon/stats-outline-icon2.png
+    - assets/icon/playlist.png
     - assets/icon/clipboard.png
     - assets/icon/logo.png
     - assets/icon/mic1.png
@@ -95,6 +94,8 @@ flutter:
     - assets/icon/mood-happy.png
     - assets/icon/mood-laugh.png
     - assets/icon/mood-sad.png
+    # mental health
+    - assets/icon/MentalHealth.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

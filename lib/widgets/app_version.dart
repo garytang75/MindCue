@@ -12,7 +12,7 @@ class AppVersion extends StatelessWidget {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
-        child: Text("version: 1.0.0"),
+        child: Text("version: 1.0.1"),
       ),
     );
   }

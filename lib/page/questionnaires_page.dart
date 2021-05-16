@@ -159,18 +159,18 @@ class QuestionnairesState extends State<Questionnaires> {
     var dateTime = DateTime.now().toString(); //date and time for DB
     try {
       RestOptions options = RestOptions(
-          path: '/test/add_user',
+          path: '/tip-new/get_tip',
           body: Uint8List.fromList('{'
-                  '\'q1\':\'"${scores[0]}"\','
-                  '\'q2\':\'${scores[1]}\','
-                  '\'q3\':\'${scores[2]}\','
-                  '\'q4\':\'${scores[3]}\','
-                  '\'q5\':\'${scores[4]}\','
-                  '\'q6\':\'${scores[5]}\','
-                  '\'q7\':\'${scores[6]}\','
-                  '\'q8\':\'${scores[7]}\','
-                  '\'q9\':\'${scores[8]}\','
-                  '\'q10\':\'${scores[9]}\','
+                  '\'q0\':\'${scores[0]}\','
+                  '\'q1\':\'${scores[1]}\','
+                  '\'q2\':\'${scores[2]}\','
+                  '\'q3\':\'${scores[3]}\','
+                  '\'q4\':\'${scores[4]}\','
+                  '\'q5\':\'${scores[5]}\','
+                  '\'q6\':\'${scores[6]}\','
+                  '\'q7\':\'${scores[7]}\','
+                  '\'q8\':\'${scores[8]}\','
+                  '\'q9\':\'${scores[9]}\','
                   '\'id\':\'$userId\','
                   '\'date\':\'$dateTime\''
                   '}'
@@ -179,9 +179,8 @@ class QuestionnairesState extends State<Questionnaires> {
       RestResponse response = await restOperation.response;
       print('POST call sendResult succeeded');
       var finalres = json.decode(String.fromCharCodes(response.data));
-      // print(new String.fromCharCodes(response.data));
 
-      _resultTip = finalres["text"];
+      _resultTip = finalres["Item"]["description"];
     } on ApiException catch (e) {
       print('POST call sendResult failed: $e');
     }

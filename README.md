@@ -27,6 +27,8 @@ Our product helps tracking mental well-being and reduce stress factors, develop 
 
 
 Instructions: <br/><br/>
+Mac OS flutter intall please click [here] (https://flutter.dev/docs/get-started/install/macos)
+Windows flutter intall please click [here] (https://flutter.dev/docs/get-started/install/windows)
 **Step 1** Install flutter,
 Then set up environment, to do so run <br/>```flutter doctor``` <br/>
 **Step 2** Clone repo<br/>

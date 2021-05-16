@@ -1,5 +1,3 @@
-import 'dart:ffi';
-import 'dart:typed_data';
 import 'package:amplify_api/amplify_api.dart';
 import 'package:amplify_flutter/amplify.dart';
 import './fetch_data.dart';
@@ -9,8 +7,8 @@ class Stats {
   Future<Map<String, List>> getAllEmotions() async {
     String userId = await Fetch().fetchUserId();
     String res;
-    List resList;
-    Map ret;
+    List resList = [];
+    Map<String, List> ret = {};
 
     //try {
     RestOptions options = RestOptions(path: '/emotions/$userId');
@@ -32,7 +30,6 @@ class Stats {
         double.parse(resList[i]["SurpriseLevel"])
       ];
     }
-
     return ret;
   }
 }

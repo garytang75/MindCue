@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:intl/intl.dart';
 import '../collect_stats_data.dart';
 
 class _GraphData {
@@ -26,15 +27,17 @@ class _EmotionOverTimeDisplay extends State<EmotionOverTimeDisplay> {
   //Method for generating the series data used in the Cartesian chart
   List<LineSeries<_GraphData, DateTime>> _getLineSeries(data) {
     //_GraphData(date, emotion1, emotion2, emotion3, emotion4)
-    List<_GraphData> graphData;
+    List<_GraphData> graphData = [];
     //<_GraphData>[
     //  _GraphData(DateTime(2020, 1, 1), 2, 3, 4, 5, 6),
     //  _GraphData(DateTime(2020, 1, 2), 3, 4, 5, 6, 7),
     //  _GraphData(DateTime(2020, 1, 3), 4, 5, 6, 7, 8)
     //];
-
-    data.forEach((k, v) =>
-        {graphData.add(_GraphData(DateTime(k), v[0], v[1], v[2], v[3], v[4]))});
+    print("data");
+    data.forEach((k, v) => {
+          graphData.add(_GraphData(
+              DateFormat('MM-dd-yyyy').parse(k), v[0], v[1], v[2], v[3], v[4]))
+        });
 
     return <LineSeries<_GraphData, DateTime>>[
       LineSeries<_GraphData, DateTime>(
@@ -84,7 +87,7 @@ class _EmotionOverTimeDisplay extends State<EmotionOverTimeDisplay> {
   // the data that is populated.
   SfCartesianChart _buildChart(data) {
     return SfCartesianChart(
-      title: ChartTitle(text: ""),
+      title: ChartTitle(text: "Emotion Ratings Over Time"),
       plotAreaBorderWidth: 1,
       series: _getLineSeries(data),
       legend:
@@ -94,7 +97,7 @@ class _EmotionOverTimeDisplay extends State<EmotionOverTimeDisplay> {
           name: "Date",
           majorGridLines: MajorGridLines(width: 0)),
       primaryYAxis: NumericAxis(
-          labelFormat: '{value}%',
+          labelFormat: '{value}',
           axisLine: AxisLine(width: 0),
           majorTickLines: MajorTickLines(color: Colors.transparent)),
       tooltipBehavior: TooltipBehavior(enable: true),

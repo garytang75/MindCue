@@ -193,7 +193,7 @@ class JournalPageState extends State<JournalPage>
     item.journals = journals.journals;
     item.createdAt = item.createdAt;
     saveData();
-    Journal().sendDairy(item.journals, item.createdAt, item.iconPath);
+    textJournal().sendDairy(item.journals, item.createdAt, item.iconPath);
   }
 
   void removeJournal(JournalLocal item) {

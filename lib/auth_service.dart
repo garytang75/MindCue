@@ -2,9 +2,10 @@ import 'dart:async';
 import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_core/amplify_core.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import './auth_credentials.dart';
-
 
 // state enumeration
 enum AuthFlowStatus { login, signUp, verification, session }
@@ -33,6 +34,7 @@ class AuthService {
     final state = AuthState(authFlowStatus: AuthFlowStatus.login);
     authStateController.add(state);
   }
+
   // user passes any AuthCredentials we will perform some logic and ultimately put
   // the user in a session state
   void loginWithCredentials(AuthCredentials credentials) async {
@@ -45,20 +47,43 @@ class AuthService {
       if (result.isSignedIn) {
         final state = AuthState(authFlowStatus: AuthFlowStatus.session);
         authStateController.add(state);
+        Fluttertoast.showToast(
+          msg: "Sign in sucessfully",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          fontSize: 12.0,
+        );
       } else {
         //If the user enters in the wrong credentials or gets any other error
         print('User could not be signed in');
       }
     } on AuthException catch (authError) {
       print('Could not login - ${authError}');
+      //On exception, create a toast to notify user that they can't log in.
+      Fluttertoast.showToast(
+        msg:
+            "Could not login, there is an issue with your username or password",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        fontSize: 12.0,
+      );
     }
   }
 
+  void showHome() {
+    final state = AuthState(authFlowStatus: AuthFlowStatus.session);
+    authStateController.add(state);
+  }
 
   void signUpWithCredentials(SignUpCredentials credentials) async {
     try {
       // userAttributes needs to be passed in the user's email as part of the sign up.
-      final userAttributes = {'email': credentials.email};
+      final userAttributes = {
+        'email': credentials.email,
+        'nickname': credentials.nickname
+      };
 
       // we pass in the username and password, along with the userAttributes containing
       // the email to sign up with Cognito
@@ -66,21 +91,14 @@ class AuthService {
           username: credentials.username,
           password: credentials.password,
           options: CognitoSignUpOptions(userAttributes: userAttributes));
+      // store the SignUpCredentials in _credentials for when the user verifies their email
+      this._credentials = credentials;
 
-      // If we successfully get a result back, the next step should be to verify
-      // their email. If the sign up process is complete for whatever reason, we
-      // will simply login the user to the app.
-      if (result.isSignUpComplete) {
-        loginWithCredentials(credentials);
-      } else {
-        // store the SignUpCredentials in _credentials for when the user verifies their email
-        this._credentials = credentials;
-
-        // update the AuthState to verification just as we did before, but only
-        // after successfully signing in and establishing that the sign up process is not complete.
-        final state = AuthState(authFlowStatus: AuthFlowStatus.verification);
-        authStateController.add(state);
-      }
+      // update the AuthState to verification just as we did before, but only
+      // after successfully signing in and establishing that the sign up process is not complete.
+      final state = AuthState(authFlowStatus: AuthFlowStatus.verification);
+      authStateController.add(state);
+      // }
 
       // If the sign up fails for any reason, we will simply print out the error to the logs.
     } on AmplifyException catch (authError) {
@@ -100,8 +118,10 @@ class AuthService {
         loginWithCredentials(_credentials);
       } else {
         // sign up in not complete
-        print('sign up in not complete');
+        print('sign up is not complete');
       }
+      final state = AuthState(authFlowStatus: AuthFlowStatus.session);
+      authStateController.add(state);
     } on AuthException catch (authError) {
       print('Could not verify code - ${authError.message}');
     }

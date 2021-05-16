@@ -1,9 +1,30 @@
 # MindCue
-
+A Capstone Project by
 Mido Akeel,
 Zifeng (Gary) Tang,
 Rinchen Lama,
 Alyona Karmazin
+
+# *MindCue*
+MindCue is aiming to improve people’s mental wellness and emotional state.
+Our product helps tracking mental well-being and reduce stress factors, develop self-awareness and healthy habits.
+
+## Project Goal
+* [x] User can **type or speak to record your feeling (Journal Keeping/Audio Journal).**
+* [x] User can **read through their thoughts to gain better insights about yourself.**
+* [x] User can **use Emoji Board to show how they are feeling today.**
+* [x] We **use all these metrics to create positive feedback to the users from questionnaires, journals.**
+
+
+## Future Features / Improvements
+* [] **Backend Optimizations.**
+* [] **Better way of journal keeping and more user friendly.**
+* [] **Flutter syntax improvements needed.**
+
+
+
+**This project uses flutter sdk, please refer to [flutter](https://flutter.dev)**
+
 
 Instructions: <br/><br/>
 **Step 1** Install flutter,

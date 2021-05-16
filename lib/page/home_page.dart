@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 40.0, bottom: 100.0),
               child: FutureBuilder<String>(
-                  future: textJournal().getSentiment(),
+                  future: TextJournal().getSentiment(),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       return Column(

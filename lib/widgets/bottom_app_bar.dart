@@ -44,21 +44,21 @@ class BottomApp extends StatelessWidget {
                 ),
               ],
             ),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon: ImageIcon(AssetImage('assets/icon/bars.png')),
-                  onPressed: () {
-                    print('2');
-                  },
-                ),
-                Text(
-                  'stats',
-                  style: TextStyle(fontSize: 10),
-                )
-              ],
-            ),
+            // Column(
+            //   mainAxisSize: MainAxisSize.min,
+            //   children: [
+            //     IconButton(
+            //       icon: ImageIcon(AssetImage('assets/icon/bars.png')),
+            //       onPressed: () {
+            //         print('2');
+            //       },
+            //     ),
+            //     Text(
+            //       'stats',
+            //       style: TextStyle(fontSize: 10),
+            //     )
+            //   ],
+            // ),
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -82,8 +82,7 @@ class BottomApp extends StatelessWidget {
               children: [
                 IconButton(
                   iconSize: 20,
-                  icon: ImageIcon(
-                      AssetImage('assets/icon/stats-outline-icon2.png')),
+                  icon: ImageIcon(AssetImage('assets/icon/bars.png')),
                   onPressed: () => {
                     Navigator.push(
                       context,
@@ -97,20 +96,20 @@ class BottomApp extends StatelessWidget {
                 ),
               ],
             ),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  iconSize: 20,
-                  icon: ImageIcon(AssetImage('')),
-                  onPressed: () => {},
-                ),
-                Text(
-                  '',
-                  style: TextStyle(fontSize: 10),
-                ),
-              ],
-            ),
+            // Column(
+            //   mainAxisSize: MainAxisSize.min,
+            //   children: [
+            //     IconButton(
+            //       iconSize: 20,
+            //       icon: ImageIcon(AssetImage('')),
+            //       onPressed: () => {},
+            //     ),
+            //     Text(
+            //       '',
+            //       style: TextStyle(fontSize: 10),
+            //     ),
+            //   ],
+            // ),
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [

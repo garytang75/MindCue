@@ -76,6 +76,40 @@ class BottomApp extends StatelessWidget {
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                IconButton(
+                  iconSize: 20,
+                  icon: ImageIcon(
+                      AssetImage('assets/icon/stats-outline-icon2.png')),
+                  onPressed: () => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => StatsPage()),
+                    )
+                  },
+                ),
+                Text(
+                  'stats',
+                  style: TextStyle(fontSize: 10),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  iconSize: 20,
+                  icon: ImageIcon(AssetImage('')),
+                  onPressed: () => {},
+                ),
+                Text(
+                  '',
+                  style: TextStyle(fontSize: 10),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
                 CircularButton(
                   color: Colors.transparent,
                   width: 50,
@@ -99,25 +133,6 @@ class BottomApp extends StatelessWidget {
                   'more',
                   style: TextStyle(fontSize: 10),
                 )
-              ],
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  iconSize: 20,
-                  icon: ImageIcon(AssetImage('assets/icon/book.png')),
-                  onPressed: () => {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => StatsPage()),
-                    )
-                  },
-                ),
-                Text(
-                  'stats',
-                  style: TextStyle(fontSize: 10),
-                ),
               ],
             ),
           ],

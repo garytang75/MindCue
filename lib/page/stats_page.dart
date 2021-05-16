@@ -9,8 +9,9 @@ class StatsPage extends StatelessWidget {
             leading: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                Image.asset('assets/icon/stats-icon.png',
-                    width: 35, height: 35),
+                new IconButton(
+                    icon: new Icon(Icons.arrow_back, color: Colors.black),
+                    onPressed: () => Navigator.of(context).pop())
               ],
             ), //Row
             title: Text(
